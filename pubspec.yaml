@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_analytics: ^10.1.5
   firebase_crashlytics: ^3.0.16
+  device_info_plus: ^8.1.0
 
 dev_dependencies:
   flutter_test:

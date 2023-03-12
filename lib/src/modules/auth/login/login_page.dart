@@ -1,5 +1,4 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -9,5 +8,3 @@ class LoginPage extends StatelessWidget {
     return const Placeholder();
   }
 }
-
-// flutterfire configure --project=wozle-dev
