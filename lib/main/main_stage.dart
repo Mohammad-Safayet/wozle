@@ -16,8 +16,10 @@ Future<void> main() async {
 
   BuildConfig.instantiate(
     config: envConfig,
-    type: Environment.DEVELOPMENT,
+    type: Environment.STAGING,
   );
 
-  runApp(const Application(),);
+  runApp(
+    const Application(),
+  );
 }
