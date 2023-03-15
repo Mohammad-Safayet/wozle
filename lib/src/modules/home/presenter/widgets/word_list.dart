@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:wozle/src/modules/home/widgets/word_form_field/word_form_field.dart';
+import 'package:wozle/src/modules/home/presenter/widgets/word_form_field/word_form_field.dart';
 
 class WordList extends StatelessWidget {
   const WordList({super.key});
