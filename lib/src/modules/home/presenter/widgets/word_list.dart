@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:wozle/src/modules/home/presenter/widgets/word_form_field/word_form_field.dart';
+import 'package:wozle/src/modules/home/presenter/widgets/word_form/word_form.dart';
 
 class WordList extends StatelessWidget {
   const WordList({super.key});
@@ -13,11 +13,11 @@ class WordList extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
-          WordFormField(size: 5),
-          WordFormField(size: 5),
-          WordFormField(size: 5),
-          WordFormField(size: 5),
-          WordFormField(size: 5),
+          WordForm(size: 5),
+          WordForm(size: 5),
+          WordForm(size: 5),
+          WordForm(size: 5),
+          WordForm(size: 5),
         ],
       ),
     );

@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field.dart';
 
-class WordFormField extends StatefulWidget {
+class WordForm extends StatefulWidget {
   final int size;
 
-  const WordFormField({
+  const WordForm({
     Key? key,
     required this.size,
   }) : super(key: key);
 
   @override
-  State<WordFormField> createState() => _WordFormFieldState();
+  State<WordForm> createState() => _WordFormState();
 }
 
-class _WordFormFieldState extends State<WordFormField>
-    with TickerProviderStateMixin {
-
+class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
   final List<AnimationController> _animationController = [];
   AnimationStatus _status = AnimationStatus.dismissed;
   late List<Widget> _children;
@@ -34,8 +32,8 @@ class _WordFormFieldState extends State<WordFormField>
     for (var index = 0; index < widget.size; index++) {
       final animationController = AnimationController(
         vsync: this,
-        duration: const Duration(
-          milliseconds: 500,
+        duration: Duration(
+          milliseconds: (1000 * (index + 1)),
         ),
       );
 
@@ -75,7 +73,6 @@ class _WordFormFieldState extends State<WordFormField>
 
   Future<void> _startAnimation() async {
     for (var i = 0; i < widget.size; i++) {
-      Future.delayed(const Duration(milliseconds: 10000));
       _animationController[i].forward();
     }
   }
