@@ -36,24 +36,18 @@ class CharacterField extends StatelessWidget {
         return Transform(
           transform: Matrix4.rotationY(rotationAngle),
           alignment: Alignment.center,
-          child: isAnimationFirstHalf
-              ? CharacterFieldLayout(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
-                  borderColor:
-                      Theme.of(context).colorScheme.secondary.withOpacity(0.8),
-                  child: CharacterTextField(onChanged: onChanged),
-                )
-              : CharacterFieldLayout(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
-                  borderColor:
-                      Theme.of(context).colorScheme.secondary.withOpacity(0.8),
-                  child: Center(
+          child: CharacterFieldLayout(
+            borderColor: Colors.black,
+            color: isAnimationFirstHalf ? Colors.blueAccent : Colors.lightGreen,
+            child: isAnimationFirstHalf
+                ? CharacterTextField(onChanged: onChanged)
+                : Center(
                     child: Text(
                       "L",
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
-                ),
+          ),
         );
       },
     );
