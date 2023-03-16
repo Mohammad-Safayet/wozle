@@ -3,10 +3,12 @@ import 'package:flutter/services.dart';
 
 class CharacterTextField extends StatelessWidget {
   final Function onChanged;
+  final bool isReadOnly;
 
   const CharacterTextField({
     Key? key,
     required this.onChanged,
+    required this.isReadOnly,
   }) : super(key: key);
 
   @override
@@ -18,6 +20,7 @@ class CharacterTextField extends StatelessWidget {
       decoration: const InputDecoration(
         border: InputBorder.none,
       ),
+      enabled: isReadOnly,
       style: Theme.of(context).textTheme.headlineMedium,
       keyboardType: TextInputType.text,
       textAlign: TextAlign.center,

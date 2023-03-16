@@ -1,9 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
-import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_controller.dart';
 
+import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_controller.dart';
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_layout.dart';
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_text_field.dart';
 
@@ -11,6 +10,7 @@ class CharacterField extends StatelessWidget {
   final int index;
   final Function onChanged;
   final Animation animation;
+  final bool isReadOnly;
 
   final _controller = CharacterFieldController();
 
@@ -19,6 +19,7 @@ class CharacterField extends StatelessWidget {
     required this.index,
     required this.onChanged,
     required this.animation,
+    required this.isReadOnly,
   }) : super(key: key);
 
   @override
@@ -44,7 +45,10 @@ class CharacterField extends StatelessWidget {
             borderColor: Colors.black,
             color: isAnimationFirstHalf ? Colors.blueAccent : Colors.lightGreen,
             child: isAnimationFirstHalf
-                ? CharacterTextField(onChanged: onCharChanged)
+                ? CharacterTextField(
+                    isReadOnly: isReadOnly,
+                    onChanged: onCharChanged,
+                  )
                 : Center(
                     child: Text(
                       _controller.char.value,
@@ -58,7 +62,7 @@ class CharacterField extends StatelessWidget {
   }
 
   void onCharChanged(BuildContext context, String value) {
-    onChanged(context);
+    onChanged(context, value);
     _controller.setChar(value);
   }
 }

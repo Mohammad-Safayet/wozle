@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field.dart';
 import 'package:wozle/src/modules/home/presenter/widgets/word_form/word_form_controller.dart';
@@ -41,6 +42,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    Logger().d(widget.isActive);
     return Form(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,6 +60,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
       children.add(
         CharacterField(
           index: index,
+          isReadOnly: widget.isActive,
           onChanged: (index < 5 - 1)
               ? (BuildContext context, String value) {
                   FocusScope.of(context).nextFocus();
