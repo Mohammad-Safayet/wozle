@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field.dart';
+import 'package:wozle/src/modules/home/presenter/widgets/word_form/word_form_controller.dart';
 
 class WordForm extends StatefulWidget {
-  final int size;
+  final int index;
   final bool isActive;
 
   const WordForm({
     Key? key,
-    required this.size,
+    required this.index,
     required this.isActive,
   }) : super(key: key);
 
@@ -20,7 +21,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
   final List<AnimationController> _animationController = [];
   late List<Widget> _children;
 
-  // final WordFormController _controller = WordFormController();
+  final _controller = WordFormController();
 
   @override
   void initState() {
@@ -51,18 +52,20 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
   List<Widget> _buildChildren() {
     final List<Widget> children = [];
 
-    for (var index = 0; index < widget.size; index++) {
+    for (var index = 0; index < 5; index++) {
       _animationController.add(_getAnimationController(index));
 
       children.add(
         CharacterField(
           index: index,
-          onChanged: (index < widget.size - 1)
-              ? (BuildContext context) {
+          onChanged: (index < 5 - 1)
+              ? (BuildContext context, String value) {
                   FocusScope.of(context).nextFocus();
+                  _controller.addChar(value);
                 }
-              : (BuildContext context) async {
+              : (BuildContext context, String value) async {
                   FocusScope.of(context).unfocus();
+                  _controller.addChar(value);
                   await _startAnimation();
                 },
           animation: _animationController[index],
@@ -89,7 +92,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
   }
 
   Future<void> _startAnimation() async {
-    for (var i = 0; i < widget.size; i++) {
+    for (var i = 0; i < 5; i++) {
       _animationController[i].forward();
     }
   }
