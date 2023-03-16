@@ -13,7 +13,7 @@ class CharacterTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: (value) {
-        if (value.length == 1) onChanged(context);
+        if (value.length == 1) onChanged(context, value);
       },
       decoration: const InputDecoration(
         border: InputBorder.none,
