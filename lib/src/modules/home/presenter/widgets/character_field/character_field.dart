@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_controller.dart';
 
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_layout.dart';
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_text_field.dart';
@@ -10,7 +12,9 @@ class CharacterField extends StatelessWidget {
   final Function onChanged;
   final Animation animation;
 
-  const CharacterField({
+  final _controller = CharacterFieldController();
+
+  CharacterField({
     Key? key,
     required this.index,
     required this.onChanged,
@@ -40,10 +44,10 @@ class CharacterField extends StatelessWidget {
             borderColor: Colors.black,
             color: isAnimationFirstHalf ? Colors.blueAccent : Colors.lightGreen,
             child: isAnimationFirstHalf
-                ? CharacterTextField(onChanged: onChanged)
+                ? CharacterTextField(onChanged: onCharChanged)
                 : Center(
                     child: Text(
-                      "L",
+                      _controller.char.value,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
@@ -51,5 +55,10 @@ class CharacterField extends StatelessWidget {
         );
       },
     );
+  }
+
+  void onCharChanged(BuildContext context, String value) {
+    onChanged(context);
+    _controller.setChar(value);
   }
 }
