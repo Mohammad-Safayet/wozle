@@ -7,11 +7,17 @@ import 'package:wozle/src/modules/home/presenter/widgets/word_form/word_form_con
 class WordForm extends StatefulWidget {
   final int index;
   final bool isActive;
+  final String word;
+  final Function activeNextForm;
+  final Function addWordToList;
 
   const WordForm({
     Key? key,
     required this.index,
     required this.isActive,
+    required this.word,
+    required this.activeNextForm,
+    required this.addWordToList,
   }) : super(key: key);
 
   @override
@@ -32,6 +38,13 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
   }
 
   @override
+  void didUpdateWidget(covariant WordForm oldWidget) {
+    _children = _buildChildren();
+
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void dispose() {
     for (var element in _animationController) {
       element.dispose();
@@ -42,7 +55,8 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Logger().d(widget.isActive);
+    Logger().d("WordFormList: ${widget.index} ${widget.isActive}");
+
     return Form(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,6 +75,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
         CharacterField(
           index: index,
           isReadOnly: widget.isActive,
+          letter: (widget.word != "") ? widget.word[index] : "",
           onChanged: (index < 5 - 1)
               ? (BuildContext context, String value) {
                   FocusScope.of(context).nextFocus();
@@ -70,6 +85,8 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
                   FocusScope.of(context).unfocus();
                   _controller.addChar(value);
                   await _startAnimation();
+                  widget.activeNextForm();
+                  widget.addWordToList(_controller.word.value);
                 },
           animation: _animationController[index],
         ),
@@ -86,10 +103,6 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
         milliseconds: (800 * (index + 1)),
       ),
     );
-
-    animationController.addStatusListener((_) {
-      setState(() {});
-    });
 
     return animationController;
   }

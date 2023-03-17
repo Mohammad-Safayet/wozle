@@ -11,6 +11,7 @@ class CharacterField extends StatelessWidget {
   final Function onChanged;
   final Animation animation;
   final bool isReadOnly;
+  final String letter;
 
   final _controller = CharacterFieldController();
 
@@ -20,10 +21,13 @@ class CharacterField extends StatelessWidget {
     required this.onChanged,
     required this.animation,
     required this.isReadOnly,
+    required this.letter,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    _controller.setChar(letter);
+
     return AnimatedBuilder(
       animation: animation,
       builder: (child, _) {
