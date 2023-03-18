@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:wozle/src/modules/home/presenter/pages/home_screen.dart';
+import 'package:wozle/src/core/routes/app_pages.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
-      home: HomeScreen(),
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
     );
   }
 }
