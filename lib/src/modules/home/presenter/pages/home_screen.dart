@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:wozle/src/core/constants/app_strings.dart';
-import 'package:wozle/src/modules/home/presenter/widgets/word_list.dart';
+import 'package:wozle/src/modules/home/presenter/widgets/word_form_list/word_form_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(8.0),
         margin: const EdgeInsets.all(8.0),
-        child: const WordList(),
+        child: WordFormList(),
       ),
     );
   }
