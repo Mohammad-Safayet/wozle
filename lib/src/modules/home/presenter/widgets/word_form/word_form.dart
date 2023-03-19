@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field.dart';
+import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_controller.dart';
 import 'package:wozle/src/modules/home/presenter/widgets/word_form/word_form_controller.dart';
 
 class WordForm extends StatefulWidget {
@@ -10,8 +12,9 @@ class WordForm extends StatefulWidget {
   final String word;
   final Function activeNextForm;
   final Function addWordToList;
+  final _controller = Get.find<WordFormController>();
 
-  const WordForm({
+  WordForm({
     Key? key,
     required this.index,
     required this.isActive,
@@ -28,7 +31,6 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
   final List<AnimationController> _animationController = [];
   late List<Widget> _children;
 
-  final _controller = WordFormController();
 
   @override
   void initState() {
@@ -39,6 +41,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
 
   @override
   void didUpdateWidget(covariant WordForm oldWidget) {
+    Logger().d("WordFormList: ${widget.index} ${widget.isActive} ${widget.word}");
     _children = _buildChildren();
 
     super.didUpdateWidget(oldWidget);
@@ -55,7 +58,6 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Logger().d("WordFormList: ${widget.index} ${widget.isActive}");
 
     return Form(
       child: Row(
@@ -76,19 +78,21 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
           index: index,
           isReadOnly: widget.isActive,
           letter: (widget.word != "") ? widget.word[index] : "",
-          onChanged: (index < 5 - 1)
+          onChanged: (index < 4       )
               ? (BuildContext context, String value) {
                   FocusScope.of(context).nextFocus();
-                  _controller.addChar(value);
+                  widget._controller.addChar(index, value);
                 }
               : (BuildContext context, String value) async {
                   FocusScope.of(context).unfocus();
-                  _controller.addChar(value);
+                  widget._controller.addChar(index, value);
                   await _startAnimation();
                   widget.activeNextForm();
-                  widget.addWordToList(_controller.word.value);
+                  Logger().d("WordForm ${widget._controller.word.value}");
+                  widget.addWordToList(widget._controller.word.value);
                 },
           animation: _animationController[index],
+          characterFieldController: CharacterFieldController(),
         ),
       );
     }

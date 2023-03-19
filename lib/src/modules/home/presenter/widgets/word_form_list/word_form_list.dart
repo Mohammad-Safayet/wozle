@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import 'package:wozle/src/modules/home/presenter/widgets/word_form/word_form.dart';
 import 'package:wozle/src/modules/home/presenter/widgets/word_form_list/word_form_list_controller.dart';
 
-class WordFormList extends StatelessWidget {
-  final _controller = WordFormListController();
+class WordFormList extends GetWidget<WordFormListController> {
 
-  WordFormList({super.key});
+  const WordFormList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,10 @@ class WordFormList extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ...[for (var i = 0; i < 6; i++) i].map((index) {
-              final isActive = index == _controller.activeIndex.value;
+              final isActive = index == controller.activeIndex.value;
               String word = "";
-              if (_controller.wordList.length > index) {
-                word = _controller.wordList[index];
+              if (controller.wordList.length > index) {
+                word = controller.wordList[index];
               }
 
               return WordForm(
@@ -30,10 +30,10 @@ class WordFormList extends StatelessWidget {
                 isActive: isActive,
                 word: word,
                 activeNextForm: () {
-                  _controller.incrementIndex();
+                  controller.incrementIndex();
                 },
                 addWordToList: (String word) {
-                  _controller.addWord(word);
+                  controller.addWord(word);
                 },
               );
             }).toList(),

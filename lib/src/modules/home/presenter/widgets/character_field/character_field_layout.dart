@@ -29,6 +29,6 @@ class CharacterFieldLayout extends StatelessWidget {
         ),
       ),
       child: child,
-    );;
+    );
   }
 }
