@@ -131,8 +131,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
   }
 
   void textFieldOnChange(int index, String value) async {
-    Logger().d("textFieldOnChange $index $value");
-    widget._controller.addChar(index, value.replaceAll('\u200b', ''));
+    widget._controller.addChar(value.replaceAll('\u200b', ''));
 
     if (value.length > 1) {
       if (index + 1 == _focusNodes.length) {
@@ -145,16 +144,16 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
         _focusNodes[index + 1].requestFocus();
       }
     } else {
+      widget._controller.deleteChar(index);
       _textEditingController[index].value = zwspEditingValue;
       if (index == 0) {
-        // do something if backspace was pressed at the first field
         FocusScope.of(context).unfocus();
       } else {
         _textEditingController[index - 1].value = zwspEditingValue;
         _focusNodes[index - 1].requestFocus();
       }
     }
-    
+
     // widget._controller.addChar(index, value.replaceAll('\u200b', ''));
   }
 }
