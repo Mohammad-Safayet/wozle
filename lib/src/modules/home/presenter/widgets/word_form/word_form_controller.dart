@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 class WordFormController extends GetxController {
-
   final word = "".obs;
 
   void addChar(int index, String char) {
@@ -11,8 +10,12 @@ class WordFormController extends GetxController {
     //   temp.replaceRange(index, index +1, char);
     // } else {
     // }
-      temp += char;
+    temp += char;
     word.value = temp;
     Logger().d("editing: $index ${temp.length} $word");
   }
+
+  
+
+  void reset() => word.value = "";
 }

@@ -14,7 +14,9 @@ class CharacterField extends StatelessWidget {
   final bool isReadOnly;
   final String letter;
   final CharacterFieldController characterFieldController;
-  
+  final TextEditingController textEditingController;
+  final FocusNode focusNode;
+
   const CharacterField({
     Key? key,
     required this.index,
@@ -23,12 +25,14 @@ class CharacterField extends StatelessWidget {
     required this.isReadOnly,
     required this.letter,
     required this.characterFieldController,
+    required this.textEditingController,
+    required this.focusNode,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     characterFieldController.setChar(letter);
-    
+
     return AnimatedBuilder(
       animation: animation,
       builder: (child, _) {
@@ -52,6 +56,8 @@ class CharacterField extends StatelessWidget {
             child: isAnimationFirstHalf
                 ? CharacterTextField(
                     isReadOnly: isReadOnly,
+                    textEditingController: textEditingController,
+                    focusNode: focusNode,
                     onChanged: onCharChanged,
                   )
                 : Center(
@@ -66,8 +72,10 @@ class CharacterField extends StatelessWidget {
     );
   }
 
-  void onCharChanged(BuildContext context, String value) {
-    onChanged(context, value);
+  void onCharChanged(String value) {
+    Logger().d("textfieldvalue: $value");
+
+    onChanged(index, value);
     characterFieldController.setChar(value);
   }
 }
