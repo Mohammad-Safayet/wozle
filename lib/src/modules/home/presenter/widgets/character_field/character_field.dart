@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_controller.dart';
 import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_layout.dart';
@@ -12,21 +13,25 @@ class CharacterField extends StatelessWidget {
   final Animation animation;
   final bool isReadOnly;
   final String letter;
+  final CharacterFieldController characterFieldController;
+  final TextEditingController textEditingController;
+  final FocusNode focusNode;
 
-  final _controller = CharacterFieldController();
-
-  CharacterField({
+  const CharacterField({
     Key? key,
     required this.index,
     required this.onChanged,
     required this.animation,
     required this.isReadOnly,
     required this.letter,
+    required this.characterFieldController,
+    required this.textEditingController,
+    required this.focusNode,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    _controller.setChar(letter);
+    characterFieldController.setChar(letter);
 
     return AnimatedBuilder(
       animation: animation,
@@ -51,11 +56,13 @@ class CharacterField extends StatelessWidget {
             child: isAnimationFirstHalf
                 ? CharacterTextField(
                     isReadOnly: isReadOnly,
+                    textEditingController: textEditingController,
+                    focusNode: focusNode,
                     onChanged: onCharChanged,
                   )
                 : Center(
                     child: Text(
-                      _controller.char.value,
+                      characterFieldController.char.value,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
@@ -65,8 +72,10 @@ class CharacterField extends StatelessWidget {
     );
   }
 
-  void onCharChanged(BuildContext context, String value) {
-    onChanged(context, value);
-    _controller.setChar(value);
+  void onCharChanged(String value) {
+    Logger().d("textfieldvalue: $value");
+
+    onChanged(index, value);
+    characterFieldController.setChar(value);
   }
 }
