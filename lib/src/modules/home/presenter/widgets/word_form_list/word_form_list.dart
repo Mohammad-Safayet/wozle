@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import 'package:wozle/src/modules/home/presenter/widgets/word_form/word_form.dart';
 import 'package:wozle/src/modules/home/presenter/widgets/word_form_list/word_form_list_controller.dart';
