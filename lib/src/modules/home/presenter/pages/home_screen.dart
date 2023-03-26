@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         title: Text(
-          APPLICATION_TITLE,
+          kAppName,
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
