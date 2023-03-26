@@ -37,6 +37,7 @@ class CharacterTextField extends StatelessWidget {
       inputFormatters: [
         LengthLimitingTextInputFormatter(2),
         FilteringTextInputFormatter.singleLineFormatter,
+        FilteringTextInputFormatter.deny(RegExp(r'\s')),
       ],
     );
   }
