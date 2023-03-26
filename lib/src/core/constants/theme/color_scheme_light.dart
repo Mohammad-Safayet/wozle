@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const ColorScheme flexSchemeLight = ColorScheme(
+const ColorScheme appColorSchemeLight = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xff004e15),
   onPrimary: Color(0xffffffff),
