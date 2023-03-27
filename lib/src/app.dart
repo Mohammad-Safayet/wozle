@@ -16,12 +16,14 @@ class Application extends StatelessWidget {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: Theme.of(context).copyWith(
+        useMaterial3: true,
         colorScheme: appColorSchemeLight,
         appBarTheme: const AppBarTheme(
           titleTextStyle: kAppBarTitleTextStyle,
         ),
       ),
       darkTheme: Theme.of(context).copyWith(
+        useMaterial3: true,
         colorScheme: appColorSchemeDark,
         appBarTheme: const AppBarTheme(
           titleTextStyle: kAppBarTitleTextStyle,
