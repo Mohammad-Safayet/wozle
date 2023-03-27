@@ -52,7 +52,9 @@ class CharacterField extends StatelessWidget {
           alignment: Alignment.center,
           child: CharacterFieldLayout(
             borderColor: Colors.black,
-            color: isAnimationFirstHalf ? Colors.blueAccent : Colors.lightGreen,
+            color: isAnimationFirstHalf
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.secondary,
             child: isAnimationFirstHalf
                 ? CharacterTextField(
                     isReadOnly: isReadOnly,
