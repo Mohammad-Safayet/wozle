@@ -20,6 +20,8 @@ Future<void> main() async {
   );
 
   runApp(
-    const Application(),
+    Application(
+      applicationName: packageInfo.appName,
+    ),
   );
 }
