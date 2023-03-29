@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:wozle/src/core/config/build_config.dart';
 
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer_controller.dart';
@@ -45,8 +47,18 @@ class NavBarContent extends StatelessWidget {
       ),
       ListTile(
         onTap: () {
-          controller.changeIndex(-1);
           Navigator.pop(context);
+          BuildConfig config = BuildConfig.instance;
+          showAboutDialog(
+            context: context,
+            applicationName: config.envConfig.appName,
+            applicationVersion: config.envConfig.appVersion,
+            applicationIcon: Image.asset(
+              "assets/icons/wozle_icon.png",
+              height: 50,
+              width: 50,
+            ),
+          );
         },
         leading: Icon(
           Icons.info_outline_rounded,
