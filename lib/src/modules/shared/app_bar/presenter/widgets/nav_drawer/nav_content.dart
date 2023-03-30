@@ -4,6 +4,7 @@ import 'package:wozle/src/core/config/build_config.dart';
 
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer_controller.dart';
+import 'package:wozle/src/modules/shared/dialogs/info_dialog.dart';
 import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/statistics_chart_dialog.dart';
 
 class NavBarContent extends StatelessWidget {
@@ -51,6 +52,23 @@ class NavBarContent extends StatelessWidget {
       ListTile(
         onTap: () {
           Navigator.pop(context);
+          showDialog(
+            context: context,
+            builder: (context) => const InfoDialog(),
+          );
+        },
+        leading: Icon(
+          Icons.help_outline_rounded,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+        title: Text(
+          kNavMenuItemString3,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ),
+      ListTile(
+        onTap: () {
+          Navigator.pop(context);
           BuildConfig config = BuildConfig.instance;
           showAboutDialog(
             context: context,
@@ -68,7 +86,7 @@ class NavBarContent extends StatelessWidget {
           color: Theme.of(context).colorScheme.onPrimary,
         ),
         title: Text(
-          kNavMenuItemString3,
+          kNavMenuItemString4,
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
