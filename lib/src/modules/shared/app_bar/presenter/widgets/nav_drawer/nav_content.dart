@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:wozle/src/core/config/build_config.dart';
 
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer_controller.dart';
+import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/statistics_chart_dialog.dart';
 
 class NavBarContent extends StatelessWidget {
   const NavBarContent({
@@ -33,8 +33,11 @@ class NavBarContent extends StatelessWidget {
       ),
       ListTile(
         onTap: () {
-          controller.changeIndex(-1);
           Navigator.pop(context);
+          showDialog(
+            context: context,
+            builder: (context) => const StatisticsChartDialog(),
+          );
         },
         leading: Icon(
           Icons.bar_chart_outlined,
