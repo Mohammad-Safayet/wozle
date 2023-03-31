@@ -12,6 +12,7 @@ Future<void> main() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   final envConfig = EnvConfig(
     appName: packageInfo.appName,
+    appVersion: packageInfo.version,
   );
 
   BuildConfig.instantiate(
@@ -20,6 +21,8 @@ Future<void> main() async {
   );
 
   runApp(
-    const Application(),
+    Application(
+      applicationName: packageInfo.appName,
+    ),
   );
 }

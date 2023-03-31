@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:wozle/src/modules/shared/app_bar/presenter/app_title.dart';
+import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/app_title.dart';
 
 class WozleAppBar extends StatefulWidget implements PreferredSizeWidget {
   const WozleAppBar({Key? key}) : super(key: key);
@@ -22,6 +22,12 @@ class _WozleAppBarState extends State<WozleAppBar> {
       centerTitle: true,
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       shadowColor: Theme.of(context).colorScheme.primary,
+      leading: Builder(
+        builder: (context) => IconButton(
+          icon: Icon(Icons.menu_rounded),
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        ),
+      ),
     );
   }
 }
