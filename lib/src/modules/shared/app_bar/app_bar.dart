@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/app_title.dart';
 
-class WozleAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const WozleAppBar({Key? key}) : super(key: key);
+class ApplicationBar extends StatefulWidget implements PreferredSizeWidget {
+  const ApplicationBar({Key? key}) : super(key: key);
 
   final Size _preferredSize = const Size.fromHeight(kToolbarHeight);
 
@@ -11,10 +11,10 @@ class WozleAppBar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => _preferredSize;
 
   @override
-  State<WozleAppBar> createState() => _WozleAppBarState();
+  State<ApplicationBar> createState() => _ApplicationBarState();
 }
 
-class _WozleAppBarState extends State<WozleAppBar> {
+class _ApplicationBarState extends State<ApplicationBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(

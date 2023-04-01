@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field.dart';
-import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_controller.dart';
-import 'package:wozle/src/modules/home/presenter/widgets/word_form/word_form_controller.dart';
+import 'package:wozle/src/modules/wozle/presenter/widgets/character_field/character_field.dart';
+import 'package:wozle/src/modules/wozle/presenter/widgets/character_field/character_field_controller.dart';
+import 'package:wozle/src/modules/wozle/presenter/widgets/word_form/word_form_controller.dart';
 
 class WordForm extends StatefulWidget {
   final int index;
