@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
-import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_controller.dart';
-import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_field_layout.dart';
-import 'package:wozle/src/modules/home/presenter/widgets/character_field/character_text_field.dart';
+import 'package:wozle/src/modules/wozle/presenter/widgets/character_field/character_field_controller.dart';
+import 'package:wozle/src/modules/wozle/presenter/widgets/character_field/character_field_layout.dart';
+import 'package:wozle/src/modules/wozle/presenter/widgets/character_field/character_text_field.dart';
 
 class CharacterField extends StatelessWidget {
   final int index;
@@ -51,7 +51,7 @@ class CharacterField extends StatelessWidget {
           transform: Matrix4.rotationY(rotationAngle),
           alignment: Alignment.center,
           child: CharacterFieldLayout(
-            borderColor: Colors.black,
+            borderColor: Theme.of(context).colorScheme.inversePrimary,
             color: isAnimationFirstHalf
                 ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).colorScheme.secondary,
