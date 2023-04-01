@@ -12,7 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   final homeScreenList = [
     const WozleView(),
-    const TempPage(),
   ];
   final _controller = Get.find<HomeScreenContoller>();
 
