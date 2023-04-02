@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import 'package:wozle/src/core/config/build_config.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
+import 'package:wozle/src/core/routes/app_pages.dart';
 import 'package:wozle/src/modules/home/presenter/pages/home_screen_controller.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer_controller.dart';
 import 'package:wozle/src/modules/shared/dialogs/info_dialog.dart';
@@ -23,9 +25,10 @@ class NavBarContent extends StatelessWidget {
     final navOptions = <Widget>[
       ListTile(
         onTap: () {
-          navController.changeIndex(-1);
-          homePageontroller.changeScreend(1);
+          navController.changeIndex(0);
+          homePageontroller.changeScreend(0);
           Navigator.pop(context);
+          Get.toNamed(Routes.SETTINGS);
         },
         leading: Icon(
           Icons.settings_rounded,
