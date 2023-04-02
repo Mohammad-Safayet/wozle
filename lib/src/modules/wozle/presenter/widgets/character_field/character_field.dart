@@ -51,10 +51,10 @@ class CharacterField extends StatelessWidget {
           transform: Matrix4.rotationY(rotationAngle),
           alignment: Alignment.center,
           child: CharacterFieldLayout(
-            borderColor: Theme.of(context).colorScheme.inversePrimary,
+            borderColor: Theme.of(context).colorScheme.secondary,
             color: isAnimationFirstHalf
-                ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.secondary,
+                ? Theme.of(context).colorScheme.background
+                : Theme.of(context).colorScheme.primary,
             child: isAnimationFirstHalf
                 ? CharacterTextField(
                     isReadOnly: isReadOnly,
@@ -64,8 +64,13 @@ class CharacterField extends StatelessWidget {
                   )
                 : Center(
                     child: Text(
-                      characterFieldController.char.value,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      characterFieldController.char.value.toUpperCase(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .copyWith(
+                            color: Theme.of(context).colorScheme.onBackground,
+                          ),
                     ),
                   ),
           ),
