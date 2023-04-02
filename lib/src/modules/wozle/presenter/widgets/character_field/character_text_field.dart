@@ -31,6 +31,7 @@ class CharacterTextField extends StatelessWidget {
       controller: textEditingController,
       focusNode: focusNode,
       enabled: isReadOnly,
+      textCapitalization: TextCapitalization.characters,
       style: Theme.of(context).textTheme.headlineMedium!.copyWith(
             color: Theme.of(context).colorScheme.onBackground,
           ),

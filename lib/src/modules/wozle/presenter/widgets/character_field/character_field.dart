@@ -64,7 +64,7 @@ class CharacterField extends StatelessWidget {
                   )
                 : Center(
                     child: Text(
-                      characterFieldController.char.value,
+                      characterFieldController.char.value.toUpperCase(),
                       style: Theme.of(context)
                           .textTheme
                           .headlineMedium!
