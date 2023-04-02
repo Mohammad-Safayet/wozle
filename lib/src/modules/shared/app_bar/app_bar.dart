@@ -20,8 +20,9 @@ class _ApplicationBarState extends State<ApplicationBar> {
     return AppBar(
       title: const AppTitle(),
       centerTitle: true,
-      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      backgroundColor: Theme.of(context).colorScheme.background,
       shadowColor: Theme.of(context).colorScheme.primary,
+      elevation: 12.0,
       leading: Builder(
         builder: (context) => IconButton(
           icon: Icon(Icons.menu_rounded),

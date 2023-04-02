@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:wozle/src/core/config/build_config.dart';
 
+import 'package:wozle/src/core/config/build_config.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
+import 'package:wozle/src/core/routes/app_pages.dart';
+import 'package:wozle/src/modules/home/presenter/pages/home_screen_controller.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer_controller.dart';
 import 'package:wozle/src/modules/shared/dialogs/info_dialog.dart';
 import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/statistics_chart_dialog.dart';
@@ -10,18 +13,22 @@ import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/statist
 class NavBarContent extends StatelessWidget {
   const NavBarContent({
     Key? key,
-    required this.controller,
+    required this.navController,
+    required this.homePageontroller,
   }) : super(key: key);
 
-  final NavBarController controller;
+  final NavBarController navController;
+  final HomeScreenContoller homePageontroller;
 
   @override
   Widget build(BuildContext context) {
     final navOptions = <Widget>[
       ListTile(
         onTap: () {
-          controller.changeIndex(-1);
+          navController.changeIndex(0);
+          homePageontroller.changeScreend(0);
           Navigator.pop(context);
+          Get.toNamed(Routes.SETTINGS);
         },
         leading: Icon(
           Icons.settings_rounded,
@@ -95,8 +102,9 @@ class NavBarContent extends StatelessWidget {
     final navHomeOptions = <Widget>[
       ListTile(
         onTap: () {
-          controller.changeIndex(0);
           Navigator.pop(context);
+          navController.changeIndex(0);
+          homePageontroller.changeScreend(0);
         },
         //TODO: change the icon
         leading: Icon(
@@ -111,13 +119,13 @@ class NavBarContent extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
         ),
         style: ListTileStyle.drawer,
-        tileColor: controller.index.value == 0
+        tileColor: navController.index.value == 0
             ? Theme.of(context).colorScheme.secondary
             : Theme.of(context).colorScheme.primary,
       ),
     ];
 
-    Logger().d(controller.index.value);
+    Logger().d(navController.index.value);
 
     return Padding(
       padding: const EdgeInsets.all(12.0),
@@ -134,8 +142,6 @@ class NavBarContent extends StatelessWidget {
 
           // Navigation option application
           ...navOptions,
-
-          Text(""),
         ],
       ),
     );
