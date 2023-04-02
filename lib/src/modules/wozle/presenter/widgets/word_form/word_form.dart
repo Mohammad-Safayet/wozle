@@ -105,7 +105,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
           characterFieldController: CharacterFieldController(),
           textEditingController: _textEditingController[index],
           focusNode: _focusNodes[index],
-          onChanged: textFieldOnChange,
+          onChanged: _textFieldOnChange,
         ),
       );
     }
@@ -130,7 +130,7 @@ class _WordFormState extends State<WordForm> with TickerProviderStateMixin {
     }
   }
 
-  void textFieldOnChange(int index, String value) async {
+  void _textFieldOnChange(int index, String value) async {
     widget._controller.addChar(value.replaceAll('\u200b', ''));
 
     if (value.length > 1) {
