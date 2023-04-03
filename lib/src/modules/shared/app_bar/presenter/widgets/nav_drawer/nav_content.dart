@@ -36,7 +36,9 @@ class NavBarContent extends StatelessWidget {
         ),
         title: Text(
           kNavMenuItemString1,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
         ),
       ),
       ListTile(
@@ -53,7 +55,9 @@ class NavBarContent extends StatelessWidget {
         ),
         title: Text(
           kNavMenuItemString2,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
         ),
       ),
       ListTile(
@@ -70,7 +74,9 @@ class NavBarContent extends StatelessWidget {
         ),
         title: Text(
           kNavMenuItemString3,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
         ),
       ),
       ListTile(
@@ -94,7 +100,9 @@ class NavBarContent extends StatelessWidget {
         ),
         title: Text(
           kNavMenuItemString4,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
         ),
       ),
     ];
@@ -113,15 +121,19 @@ class NavBarContent extends StatelessWidget {
         ),
         title: Text(
           kHomeItemString1,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: navController.index.value == 0
+            ? Theme.of(context).colorScheme.onPrimary
+            : Theme.of(context).colorScheme.onSecondary,
+              ),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
         style: ListTileStyle.drawer,
         tileColor: navController.index.value == 0
-            ? Theme.of(context).colorScheme.secondary
-            : Theme.of(context).colorScheme.primary,
+            ? Theme.of(context).colorScheme.primary
+            : Theme.of(context).colorScheme.secondary,
       ),
     ];
 

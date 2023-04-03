@@ -18,7 +18,7 @@ class NavDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: NavigationDrawer(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         children: [
           const NavHeader(),
           NavBarContent(
