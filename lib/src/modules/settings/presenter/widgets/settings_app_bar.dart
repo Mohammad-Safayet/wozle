@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:wozle/src/core/constants/theme/text_theme.dart';
+import 'package:wozle/src/core/constants/theme/text_theme_dark.dart';
 
 class SettingsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SettingsAppBar({super.key});

@@ -45,9 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Hard Mode",
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 tailing: Switch(
                   value: _isHardMode,
@@ -57,9 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 subTitle: Text(
                   "Turns off the hints of the gussed word",
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
               SizedBox(
@@ -73,9 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Dark Theme",
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 tailing: Switch(
                   value: _isDarkMode,
@@ -95,17 +89,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Feedback",
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 tailing: TextButton(
                   onPressed: () {},
                   child: Text(
                     "E-mail",
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
               ),
