@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 
 import 'package:wozle/src/core/constants/theme/color_scheme_dark.dart';
 import 'package:wozle/src/core/constants/theme/color_scheme_light.dart';
-import 'package:wozle/src/core/constants/theme/text_theme.dart';
+import 'package:wozle/src/core/constants/theme/text_theme_dark.dart';
+import 'package:wozle/src/core/constants/theme/text_theme_light.dart';
 import 'package:wozle/src/core/routes/app_pages.dart';
 
 class Application extends StatelessWidget {
@@ -11,7 +12,7 @@ class Application extends StatelessWidget {
     Key? key,
     required this.applicationName,
   }) : super(key: key);
-  
+
   final String applicationName;
 
   @override
@@ -26,6 +27,7 @@ class Application extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           titleTextStyle: kAppBarTitleTextStyle,
         ),
+        textTheme: textThemeLight,
       ),
       darkTheme: Theme.of(context).copyWith(
         useMaterial3: true,
@@ -33,6 +35,7 @@ class Application extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           titleTextStyle: kAppBarTitleTextStyle,
         ),
+        textTheme: textThemeDark,
       ),
     );
   }
