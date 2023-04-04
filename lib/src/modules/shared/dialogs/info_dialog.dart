@@ -23,28 +23,25 @@ class InfoDialog extends StatelessWidget {
     );
   }
 
-  Widget _exampleWidget(Text example, bool? isRight) {
-    final wozleDefaultContainer = Container(
+  Widget _exampleField(Color color) {
+    return Container(
       width: 18,
       height: 18,
       margin: const EdgeInsets.all(2.0),
-      color: Colors.blueGrey,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(2.0),
+        ),
+      ),
     );
+  }
 
-    final wozleRightContainer = Container(
-      width: 18,
-      height: 18,
-      margin: const EdgeInsets.all(2.0),
-      color: Colors.green,
-    );
-
-    final wozleWrongContainer = Container(
-      width: 18,
-      height: 18,
-      margin: const EdgeInsets.all(2.0),
-      color: Colors.yellowAccent,
-    );
-
+  Widget _exampleWidget(
+    BuildContext context,
+    Text example,
+    bool? isRight,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: Column(
@@ -53,16 +50,31 @@ class InfoDialog extends StatelessWidget {
           Row(
             children: [
               (isRight != null && isRight == true)
-                  ? wozleRightContainer
-                  : wozleDefaultContainer,
-              wozleDefaultContainer,
-              wozleDefaultContainer,
+                  ? _exampleField(Colors.green)
+                  : _exampleField(
+                      Theme.of(context).colorScheme.background,
+                    ),
+              _exampleField(
+                Theme.of(context).colorScheme.background,
+              ),
+              _exampleField(
+                Theme.of(context).colorScheme.background,
+              ),
               (isRight != null && isRight == false)
-                  ? wozleWrongContainer
-                  : wozleDefaultContainer,
-              wozleDefaultContainer,
-              wozleDefaultContainer,
+                  ? _exampleField(Colors.yellowAccent)
+                  : _exampleField(
+                      Theme.of(context).colorScheme.background,
+                    ),
+              _exampleField(
+                Theme.of(context).colorScheme.background,
+              ),
+              _exampleField(
+                Theme.of(context).colorScheme.background,
+              ),
             ],
+          ),
+          const SizedBox(
+            height: 2.0,
           ),
           example,
         ],
@@ -73,6 +85,7 @@ class InfoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       child: SizedBox(
         height: 400,
         width: 400,
@@ -87,7 +100,10 @@ class InfoDialog extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.close),
+                  icon: Icon(
+                    Icons.close,
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
                 ),
               ),
             ),
@@ -101,11 +117,15 @@ class InfoDialog extends StatelessWidget {
                   // Title
                   Text(
                     kPlayInstructionHeading,
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
                   ),
                   Text(
                     kPlayInstructionTitle,
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -115,35 +135,48 @@ class InfoDialog extends StatelessWidget {
                   _instructionWidget(
                     Text(
                       kPlayInstruction1,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
                     ),
                   ),
                   _instructionWidget(
                     Text(
                       kPlayInstruction2,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
                     ),
                   ),
 
                   // Examples
                   _exampleWidget(
+                    context,
                     Text(
                       kPlayExample1,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
                     ),
                     true,
                   ),
                   _exampleWidget(
+                    context,
                     Text(
                       kPlayExample2,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
                     ),
                     false,
                   ),
                   _exampleWidget(
+                    context,
                     Text(
                       kPlayExample3,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
                     ),
                     null,
                   ),
