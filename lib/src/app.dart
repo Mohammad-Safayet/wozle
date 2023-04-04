@@ -24,17 +24,11 @@ class Application extends StatelessWidget {
       theme: Theme.of(context).copyWith(
         useMaterial3: true,
         colorScheme: appColorSchemeLight,
-        appBarTheme: const AppBarTheme(
-          titleTextStyle: kAppBarTitleTextStyle,
-        ),
         textTheme: textThemeLight,
       ),
       darkTheme: Theme.of(context).copyWith(
         useMaterial3: true,
         colorScheme: appColorSchemeDark,
-        appBarTheme: const AppBarTheme(
-          titleTextStyle: kAppBarTitleTextStyle,
-        ),
         textTheme: textThemeDark,
       ),
     );
