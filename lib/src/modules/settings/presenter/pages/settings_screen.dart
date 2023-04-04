@@ -29,6 +29,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme.headlineSmall!.copyWith(
+          color: Theme.of(context).colorScheme.onBackground,
+        );
     return Scaffold(
       appBar: const SettingsAppBar(),
       body: SafeArea(
@@ -45,9 +48,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Hard Mode",
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
+                  style: textTheme,
                 ),
                 tailing: Switch(
                   value: _isHardMode,
@@ -73,9 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Dark Theme",
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
+                  style: textTheme,
                 ),
                 tailing: Switch(
                   value: _isDarkMode,
@@ -95,9 +94,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Feedback",
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
+                  style: textTheme,
                 ),
                 tailing: TextButton(
                   onPressed: () {},

@@ -65,12 +65,10 @@ class CharacterField extends StatelessWidget {
                 : Center(
                     child: Text(
                       characterFieldController.char.value.toUpperCase(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onBackground,
-                          ),
+                      style:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
                     ),
                   ),
           ),

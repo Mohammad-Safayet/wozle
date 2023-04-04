@@ -16,7 +16,9 @@ class StatisticsDialogHeading extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               "Statistics",
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
             ),
           ),
 
@@ -52,11 +54,15 @@ class StatisticsDialogHeading extends StatelessWidget {
         children: [
           Text(
             data,
-            style: Theme.of(context).textTheme.displaySmall,
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
           ),
           Text(
             desc,
-            style: Theme.of(context).textTheme.labelLarge,
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
           ),
         ],
       ),

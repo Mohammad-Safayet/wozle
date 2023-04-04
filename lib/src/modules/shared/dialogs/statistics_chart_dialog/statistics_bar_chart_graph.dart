@@ -49,7 +49,9 @@ class _StatisticsBarCharGraphState extends State<StatisticsBarCharGraph> {
         child: SfCartesianChart(
           title: ChartTitle(
             text: "Guess Distribution".toUpperCase(),
-            textStyle: Theme.of(context).textTheme.titleSmall,
+            textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
             alignment: ChartAlignment.near,
           ),
           plotAreaBorderWidth: 0,
@@ -63,7 +65,9 @@ class _StatisticsBarCharGraphState extends State<StatisticsBarCharGraph> {
               color: Theme.of(context).colorScheme.primary,
               dataLabelSettings: DataLabelSettings(
                 isVisible: true,
-                textStyle: Theme.of(context).textTheme.bodyMedium!,
+                textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
                 labelPosition: ChartDataLabelPosition.inside,
                 labelAlignment: ChartDataLabelAlignment.top,
               ),

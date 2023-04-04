@@ -8,7 +8,7 @@ class NavHeader extends StatelessWidget {
     return DrawerHeader(
       padding: const EdgeInsets.symmetric(horizontal: 18.0),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
+        color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(12.0),
         ),
@@ -21,7 +21,7 @@ class NavHeader extends StatelessWidget {
             height: 60,
             width: 60,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.secondary,
               shape: BoxShape.circle,
             ),
             padding: const EdgeInsets.all(8.0),
@@ -36,7 +36,9 @@ class NavHeader extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0),
             child: Text(
               "Guest",
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
             ),
           ),
         ],
