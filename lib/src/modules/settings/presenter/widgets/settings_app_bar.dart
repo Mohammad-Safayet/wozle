@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:wozle/src/core/constants/theme/text_theme_dark.dart';
-
 class SettingsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SettingsAppBar({super.key});
 
@@ -13,9 +11,13 @@ class SettingsAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       shadowColor: Theme.of(context).colorScheme.primary,
       elevation: 12.0,
-      title: const Text(
+      title: Text(
         "Settings",
-        style: kAppBarTitleTextStyle,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onBackground,
+          fontSize: 32.0,
+          letterSpacing: 1.15,
+        ),
       ),
       leading: IconButton(
         onPressed: () {

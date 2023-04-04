@@ -29,6 +29,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme.headlineSmall!.copyWith(
+          color: Theme.of(context).colorScheme.onBackground,
+        );
     return Scaffold(
       appBar: const SettingsAppBar(),
       body: SafeArea(
@@ -45,7 +48,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Hard Mode",
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: textTheme,
                 ),
                 tailing: Switch(
                   value: _isHardMode,
@@ -55,7 +58,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 subTitle: Text(
                   "Turns off the hints of the gussed word",
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground,
+                      ),
                 ),
               ),
               SizedBox(
@@ -69,7 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Dark Theme",
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: textTheme,
                 ),
                 tailing: Switch(
                   value: _isDarkMode,
@@ -89,13 +94,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SettingsTile(
                 title: Text(
                   "Feedback",
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: textTheme,
                 ),
                 tailing: TextButton(
                   onPressed: () {},
                   child: Text(
                     "E-mail",
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
                   ),
                 ),
               ),
