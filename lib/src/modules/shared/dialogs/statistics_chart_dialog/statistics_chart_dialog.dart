@@ -8,7 +8,7 @@ class StatisticsChartDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       child: SizedBox(
         height: 400,
         width: 300,
@@ -22,7 +22,10 @@ class StatisticsChartDialog extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.close),
+                  icon: Icon(
+                    Icons.close,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
                 ),
               ),
             ),
