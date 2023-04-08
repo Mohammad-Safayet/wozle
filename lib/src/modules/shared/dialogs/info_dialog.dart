@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:wozle/src/core/constants/app_strings.dart';
 
 class InfoDialog extends StatelessWidget {
-  const InfoDialog({super.key});
+  const InfoDialog({
+    Key? key,
+    this.onClose,
+  }) : super(key: key);
+
+  final Function? onClose;
 
   Widget _instructionWidget(Text instruction) {
     return Row(
@@ -99,6 +105,9 @@ class InfoDialog extends StatelessWidget {
                 child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
+                    if (onClose != null) {
+                      onClose!();
+                    }
                   },
                   icon: Icon(
                     Icons.close,
