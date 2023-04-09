@@ -14,6 +14,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _isHardMode = false;
   bool _isDarkMode = true;
+  bool _isStartOn = false;
 
   void onHardModeTap(bool value) {
     setState(() {
@@ -27,9 +28,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
+  void onStartOnTap(bool value) {
+    setState(() {
+      _isStartOn = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme.headlineSmall!.copyWith(
+    final textTheme = Theme.of(context).textTheme.titleMedium!.copyWith(
           color: Theme.of(context).colorScheme.onBackground,
         );
     return Scaffold(
@@ -58,7 +65,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 subTitle: Text(
                   "Turns off the hints of the gussed word",
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
                         color: Theme.of(context).colorScheme.onBackground,
                       ),
                 ),
@@ -93,6 +100,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               SettingsTile(
                 title: Text(
+                  "Don't show dialog on start",
+                  style: textTheme,
+                ),
+                tailing: Switch(
+                  value: _isStartOn,
+                  onChanged: (value) {
+                    onDarkThemeTap(value);
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 25.0,
+                child: Center(
+                  child: Divider(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+              SettingsTile(
+                title: Text(
                   "Feedback",
                   style: textTheme,
                 ),
@@ -100,7 +127,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   onPressed: () {},
                   child: Text(
                     "E-mail",
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                   ),
