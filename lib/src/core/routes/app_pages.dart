@@ -20,15 +20,12 @@ class AppPages {
       page: () => const HomeView(),
       bindings: [
         NavBarBinding(),
-        WordFormListBinding(),
-        WordFormBinding(),
       ],
     ),
     GetPage(
       name: _Paths.WOZLE,
       page: () => const WozleView(),
       bindings: [
-        NavBarBinding(),
         WordFormListBinding(),
         WordFormBinding(),
       ],
