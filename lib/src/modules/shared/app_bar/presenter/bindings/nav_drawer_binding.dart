@@ -4,8 +4,9 @@ import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/ap
 class NavBarBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(
+    Get.put(
       () => NavBarController(),
+      permanent: true
     );
   }
 }
