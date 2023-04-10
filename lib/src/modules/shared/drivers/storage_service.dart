@@ -21,8 +21,7 @@ class StorageService extends GetxService {
   }
 
   Object? get(String key) {
-    // TODO: implement get
-    throw UnimplementedError();
+    return _preferences.get(key);
   }
 
   bool? getBool(String key) {
@@ -49,38 +48,29 @@ class StorageService extends GetxService {
     return _preferences.getStringList(key);
   }
 
-  Future<void> reload() {
-    // TODO: implement reload
-    throw UnimplementedError();
-  }
-
   Future<bool> remove(String key) {
-    // TODO: implement remove
-    throw UnimplementedError();
+    return _preferences.remove(key);
   }
 
   Future<bool> setBool(String key, bool value) {
-    // TODO: implement setBool
-    throw UnimplementedError();
+    return _preferences.setBool(key, value);
   }
 
   Future<bool> setDouble(String key, double value) {
-    // TODO: implement setDouble
-    throw UnimplementedError();
+    return _preferences.setDouble(key, value);
   }
 
   Future<bool> setInt(String key, int value) {
-    // TODO: implement setInt
-    throw UnimplementedError();
+    return _preferences.setInt(key, value);
   }
 
   Future<bool> setString(String key, String value) {
-    // TODO: implement setString
-    throw UnimplementedError();
+        return _preferences.setString(key, value);
+
   }
 
   Future<bool> setStringList(String key, List<String> value) {
-    // TODO: implement setStringList
-    throw UnimplementedError();
+        return _preferences.setStringList(key, value);
+
   }
 }
