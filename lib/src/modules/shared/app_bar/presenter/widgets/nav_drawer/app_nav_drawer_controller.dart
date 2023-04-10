@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 class NavBarController extends GetxController {
-  final index = 0.obs;
+  final route = Rxn<String>(Get.currentRoute);
 
-  void changeIndex(int value) {
-    index.value = value;
+  void changeIndex(String value) {
+    route.value = value;
   }
 }
