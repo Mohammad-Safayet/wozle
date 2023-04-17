@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:wozle/src/core/constants/app_strings.dart';
 
 import 'package:wozle/src/modules/settings/presenter/widgets/settings_app_bar.dart';
 import 'package:wozle/src/modules/settings/presenter/widgets/settings_tile.dart';
+import 'package:wozle/src/modules/shared/drivers/storage_service.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -12,9 +14,20 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _isHardMode = false;
-  bool _isDarkMode = true;
-  bool _isStartOn = false;
+  final storage = StorageService.to;
+
+  late bool _isHardMode;
+  late bool _isDarkMode;
+  late bool _isStartOn;
+
+  @override
+  void initState() {
+    _isDarkMode = storage.getBool(kSpIsDarkMode) ?? true;
+    _isStartOn = storage.getBool(kSpOnStartKey) ?? true;
+    _isHardMode = storage.getBool(kSpIsHardMode) ?? false;
+    
+    super.initState();
+  }
 
   void onHardModeTap(bool value) {
     setState(() {
