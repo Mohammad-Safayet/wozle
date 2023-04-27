@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/routes/app_pages.dart';
+import 'package:wozle/src/modules/home/presenter/pages/home_screen_controller.dart';
 
 import 'package:wozle/src/modules/shared/app_bar/app_bar.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer.dart';
@@ -15,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final storageService = StorageService.to;
     final isStartDialogOff = storageService.getBool(kSpOnStartKey) ?? false;
+    final controller = HomeScreenController.to;
 
     if (isStartDialogOff) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -22,18 +25,21 @@ class HomeScreen extends StatelessWidget {
         Get.toNamed(Routes.WOZLE);
       });
     } else {
-      Future.delayed(
-        Duration.zero,
-        () => showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (context) => InfoDialog(
-            onClose: () {
-              Get.toNamed(Routes.WOZLE);
-            },
+      if (!controller.isDialogShown.value) {
+        Future.delayed(
+          Duration.zero,
+          () => showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => InfoDialog(
+              onClose: () {
+                Get.toNamed(Routes.WOZLE);
+              },
+            ),
           ),
-        ),
-      );
+        );
+        controller.dialogShown();
+      }
     }
 
     return Scaffold(
