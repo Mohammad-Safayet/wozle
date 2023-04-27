@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:get/get.dart';
 
+import 'package:wozle/src/modules/settings/presenter/pages/settings_controller.dart';
 import 'package:wozle/src/modules/settings/presenter/widgets/settings_app_bar.dart';
 import 'package:wozle/src/modules/settings/presenter/widgets/settings_tile.dart';
+import 'package:wozle/src/modules/shared/drivers/storage_service.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -12,33 +14,15 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _isHardMode = false;
-  bool _isDarkMode = true;
-  bool _isStartOn = false;
-
-  void onHardModeTap(bool value) {
-    setState(() {
-      _isHardMode = value;
-    });
-  }
-
-  void onDarkThemeTap(bool value) {
-    setState(() {
-      _isDarkMode = value;
-    });
-  }
-
-  void onStartOnTap(bool value) {
-    setState(() {
-      _isStartOn = value;
-    });
-  }
+  final storage = StorageService.to;
+  final controller = SettingsController.to;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme.titleMedium!.copyWith(
           color: Theme.of(context).colorScheme.onBackground,
         );
+
     return Scaffold(
       appBar: const SettingsAppBar(),
       body: SafeArea(
@@ -57,11 +41,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   "Hard Mode",
                   style: textTheme,
                 ),
-                tailing: Switch(
-                  value: _isHardMode,
-                  onChanged: (value) {
-                    onHardModeTap(value);
-                  },
+                tailing: Obx(
+                  () => Switch(
+                    value: controller.isHardModeOn.value,
+                    onChanged: (value) {
+                      // controller.changeIsDarkMode(context, value);
+                    },
+                  ),
                 ),
                 subTitle: Text(
                   "Turns off the hints of the gussed word",
@@ -83,11 +69,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   "Dark Theme",
                   style: textTheme,
                 ),
-                tailing: Switch(
-                  value: _isDarkMode,
-                  onChanged: (value) {
-                    onDarkThemeTap(value);
-                  },
+                tailing: Obx(
+                  () => Switch(
+                    value: controller.isDarkModeOn.value,
+                    onChanged: (value) {
+                      controller.changeIsDarkMode(context, value);
+                    },
+                  ),
                 ),
               ),
               SizedBox(
@@ -103,11 +91,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   "Don't show dialog on start",
                   style: textTheme,
                 ),
-                tailing: Switch(
-                  value: _isStartOn,
-                  onChanged: (value) {
-                    onDarkThemeTap(value);
-                  },
+                tailing: Obx(
+                  () => Switch(
+                    value: controller.isHardModeOn.value,
+                    onChanged: (value) {
+                      // controller.changeIsDarkMode(context, value);
+                    },
+                  ),
                 ),
               ),
               SizedBox(

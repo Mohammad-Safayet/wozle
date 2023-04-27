@@ -6,6 +6,8 @@ import 'package:wozle/src/app.dart';
 import 'package:wozle/src/core/config/build_config.dart';
 import 'package:wozle/src/core/config/env_config.dart';
 import 'package:wozle/src/core/config/environment.dart';
+import 'package:wozle/src/modules/shared/drivers/navigation_service.dart';
+import 'package:wozle/src/modules/shared/drivers/settings_service.dart';
 import 'package:wozle/src/modules/shared/drivers/storage_service.dart';
 
 Future<void> main() async {
@@ -24,6 +26,12 @@ Future<void> main() async {
 
   await Get.putAsync(
     () => StorageService().init(),
+  );
+  Get.put(
+    NavigationSerivce(),
+  );
+  Get.put(
+    SettingsService(storage: StorageService.to),
   );
 
   runApp(

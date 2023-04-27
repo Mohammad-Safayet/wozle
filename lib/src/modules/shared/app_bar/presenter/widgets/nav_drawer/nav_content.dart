@@ -5,9 +5,9 @@ import 'package:logger/logger.dart';
 import 'package:wozle/src/core/config/build_config.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/routes/app_pages.dart';
-import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer_controller.dart';
 import 'package:wozle/src/modules/shared/dialogs/info_dialog.dart';
 import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/statistics_chart_dialog.dart';
+import 'package:wozle/src/modules/shared/drivers/navigation_service.dart';
 
 class NavBarContent extends StatelessWidget {
   const NavBarContent({
@@ -15,7 +15,7 @@ class NavBarContent extends StatelessWidget {
     required this.navController,
   }) : super(key: key);
 
-  final NavBarController navController;
+  final NavigationSerivce navController;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class NavBarContent extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
 
-          navController.changeIndex(Routes.WOZLE);
+          navController.changeRoute(Routes.WOZLE);
           Get.toNamed(Routes.SETTINGS);
         },
         leading: Icon(
@@ -42,7 +42,7 @@ class NavBarContent extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
 
-          navController.changeIndex(Routes.WOZLE);
+          navController.changeRoute(Routes.WOZLE);
           showDialog(
             context: context,
             builder: (context) => const StatisticsChartDialog(),
@@ -63,7 +63,7 @@ class NavBarContent extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
 
-          navController.changeIndex(Routes.WOZLE);
+          navController.changeRoute(Routes.WOZLE);
           showDialog(
             context: context,
             builder: (context) => const InfoDialog(),
@@ -112,7 +112,7 @@ class NavBarContent extends StatelessWidget {
       ListTile(
         onTap: () {
           Navigator.pop(context);
-          navController.changeIndex(Routes.WOZLE);
+          navController.changeRoute(Routes.WOZLE);
           Get.toNamed(Routes.WOZLE);
         },
         //TODO: change the icon
