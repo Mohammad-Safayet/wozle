@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import 'package:wozle/src/core/constants/app_strings.dart';
-import 'package:wozle/src/modules/shared/drivers/shared_prefs_service.dart';
+import 'package:wozle/src/modules/shared/services/shared_prefs_service.dart';
 
 class SettingsService extends GetxService {
   final isDarkModeOn = true.obs;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wozle/src/app.dart';
 
-import 'package:wozle/src/modules/shared/drivers/settings_service.dart';
+import 'package:wozle/src/modules/shared/services/settings_service.dart';
 
 class SettingsController extends GetxController {
   static SettingsController get to => Get.find();

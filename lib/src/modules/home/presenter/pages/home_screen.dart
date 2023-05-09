@@ -8,7 +8,7 @@ import 'package:wozle/src/modules/home/presenter/pages/home_screen_controller.da
 import 'package:wozle/src/modules/shared/app_bar/app_bar.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer.dart';
 import 'package:wozle/src/modules/shared/dialogs/info_dialog.dart';
-import 'package:wozle/src/modules/shared/drivers/shared_prefs_service.dart';
+import 'package:wozle/src/modules/shared/services/shared_prefs_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
