@@ -7,7 +7,7 @@ import 'package:wozle/src/core/constants/theme/color_scheme_light.dart';
 import 'package:wozle/src/core/constants/theme/text_theme_dark.dart';
 import 'package:wozle/src/core/constants/theme/text_theme_light.dart';
 import 'package:wozle/src/core/routes/app_pages.dart';
-import 'package:wozle/src/modules/shared/drivers/settings_service.dart';
+import 'package:wozle/src/modules/shared/services/settings_service.dart';
 
 class Application extends StatefulWidget {
  const Application({
