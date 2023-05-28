@@ -8,7 +8,6 @@ part 'word.freezed.dart';
 class Word with _$Word {
   const factory Word({
     required String word,
-    required String origin,
     required List<Meaning>  meanings,
   }) = _Word;
 }

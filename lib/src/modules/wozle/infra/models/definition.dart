@@ -6,6 +6,6 @@ part 'definition.freezed.dart';
 class Definition with _$Definition {
   const factory Definition({
     required String definition,
-    required String example,
+    String? example,
   }) = _Definition;
 }
