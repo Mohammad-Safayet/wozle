@@ -7,12 +7,10 @@ part 'word_entity.g.dart';
 @JsonSerializable()
 class WordEntity {
   final String word;
-  final String origin;
   final List<MeaningEntity> meanings;
 
   WordEntity({
     required this.word,
-    required this.origin,
     required this.meanings,
   });
 
