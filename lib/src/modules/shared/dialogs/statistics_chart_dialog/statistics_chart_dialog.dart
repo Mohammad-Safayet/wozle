@@ -36,10 +36,10 @@ class StatisticsChartDialog extends StatelessWidget {
                 horizontal: 8.0,
                 vertical: 22.0,
               ),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   // Heading
                   StatisticsDialogHeading(),
 

@@ -6,7 +6,6 @@ import 'package:wozle/src/core/extensions/entity_extension.dart';
 import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/word_entity.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource.dart';
-import 'package:wozle/src/modules/wozle/infra/models/word.dart';
 
 class WordRemoteDataSourceImpl extends WordRemoteDataSource {
   final HttpDriver httpDriver;
@@ -25,16 +24,12 @@ class WordRemoteDataSourceImpl extends WordRemoteDataSource {
   }) async {
     try {
       final word = await httpDriver.get(
-          Uri.https(
-            "random-words5.p.rapidapi.com",
-            "/getRandom",
-            {'wordLength': '5'},
-          ),
-          headers: {
-            "X-RapidAPI-Key":
-                "6f0fcf397bmsh133e8fa7b417a82p15ca75jsnf91462dce8bd",
-            "X-RapidAPI-Host": "random-words5.p.rapidapi.com"
-          });
+        Uri.https(
+          "random-words5.p.rapidapi.com",
+          "/getRandom",
+          {'wordLength': '5'},
+        ),
+      );
       final response = await httpDriver.get(
         Uri.https(baseUrl, endPoint + word!.body, queryParams),
         headers: headers,
