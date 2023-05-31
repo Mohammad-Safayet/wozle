@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:wozle/src/app.dart';
-import 'package:wozle/src/core/config/build_config.dart';
-import 'package:wozle/src/core/config/env_config.dart';
-import 'package:wozle/src/core/config/environment.dart';
+import 'package:wozle/src/core/config/config.dart';
 import 'package:wozle/src/modules/shared/services/navigation_service.dart';
 import 'package:wozle/src/modules/shared/services/settings_service.dart';
 import 'package:wozle/src/modules/shared/services/shared_prefs_service.dart';
