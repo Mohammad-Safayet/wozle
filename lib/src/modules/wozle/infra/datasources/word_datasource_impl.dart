@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:logger/logger.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/extensions/entity_extension.dart';
 
 import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
@@ -30,6 +31,10 @@ class WordRemoteDataSourceImpl extends WordRemoteDataSource {
           "/getRandom",
           {'wordLength': '5'},
         ),
+        headers: {
+          dotenv.env[kEnvRapidApiKey]!: dotenv.env[kEnvRapidApiValue]!,
+          dotenv.env[kEnvRapidApiHostKey]!: dotenv.env[kEnvRapidApiHostValue]!,
+        },
       );
       final response = await httpDriver.get(
         Uri.https(baseUrl, endPoint + word.body, queryParams),
