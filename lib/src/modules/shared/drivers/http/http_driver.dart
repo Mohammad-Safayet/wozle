@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 abstract class HttpDriver {
-  Future<Response?> get(
+  Future<Response> get(
     Uri url, {
     Map<String, String>? headers,
   });
 
-  Future<Response?> post(
+  Future<Response> post(
     Uri url, {
     Map<String, String>? headers,
     Object? body,

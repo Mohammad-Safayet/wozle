@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:logger/logger.dart';
+import 'package:get/get_connect/http/src/status/http_status.dart';
 
+import 'package:wozle/src/core/utils/error_handling/error_handling.dart';
 import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
 
 class HttpDriverImpl extends HttpDriver {
@@ -14,11 +16,11 @@ class HttpDriverImpl extends HttpDriver {
   });
 
   @override
-  Future<Response?> get(
+  Future<Response> get(
     Uri url, {
     Map<String, String>? headers,
   }) async {
-    final Response? response;
+    final Response response;
 
     try {
       response = await client
@@ -28,7 +30,14 @@ class HttpDriverImpl extends HttpDriver {
           )
           .timeout(timeLimit);
 
-      return response;
+      if (response.statusCode == HttpStatus.ok) {
+        return response;
+      } else {
+        if (response.statusCode == HttpStatus.requestTimeout) {
+          throw NoConnectionException();
+        }
+        throw ServerException();
+      }
     } catch (exception) {
       Logger().e(
         "HttpDriverImpl: ${client.toString()} get exception ${exception.toString()}",
@@ -38,13 +47,13 @@ class HttpDriverImpl extends HttpDriver {
   }
 
   @override
-  Future<Response?> post(
+  Future<Response> post(
     Uri url, {
     Map<String, String>? headers,
     Object? body,
     Encoding? encoding,
   }) async {
-    final Response? response;
+    final Response response;
 
     try {
       response = await client
