@@ -23,3 +23,9 @@ const kPlayExample3 = "The letter(s) in the grey space is not in the word";
 const kSpOnStartKey = "latif.safayet.wozle-onStartKey";
 const kSpIsDarkModeKey = "latif.safayet.wozle-IsDarkMode";
 const kSpIsHardModeKey = "latif.safayet.wozle-IsHardMode";
+
+// .env properties
+const kEnvRapidApiKey = "RANDOM_WORD_RAPID_API_KEY";
+const kEnvRapidApiValue = "RANDOM_WORD_RAPID_API_Value";
+const kEnvRapidApiHostKey = "RANDOM_WORD_RAPID_Host_KEY";
+const kEnvRapidApiHostValue = "RANDOM_WORD_RAPID_HOST_VALUE";
