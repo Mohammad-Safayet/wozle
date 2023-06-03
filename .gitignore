@@ -58,3 +58,6 @@ app.*.map.json
 **/*.g.dart
 **/*.freezed.dart
 **/*-model.js
+
+# secrets
+**/*.env
