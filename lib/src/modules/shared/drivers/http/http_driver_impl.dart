@@ -64,13 +64,12 @@ class HttpDriverImpl extends HttpDriver {
             encoding: encoding,
           )
           .timeout(timeLimit);
-
-      return response;
     } catch (exception) {
       Logger().e(
         "HttpDriverImpl: ${client.toString()} post exception ${exception.toString()}",
       );
       rethrow;
     }
+    return response;
   }
 }
