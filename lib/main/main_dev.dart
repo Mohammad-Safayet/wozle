@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -21,6 +22,8 @@ Future<void> main() async {
     config: envConfig,
     type: Environment.DEVELOPMENT,
   );
+
+  await dotenv.load(fileName: "env/dev.env");
 
   await Get.putAsync(
     () => SharedPrefsService().init(),
