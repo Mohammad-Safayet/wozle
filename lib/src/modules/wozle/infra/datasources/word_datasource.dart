@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:wozle/src/modules/wozle/infra/models/word.dart';
+
 abstract class WordRemoteDataSource {
-  Future<dynamic> getData(
+  Future<Word> getData(
     String endPoint, {
     Map<String, String>? queryParams,
     Map<String, String>? headers,

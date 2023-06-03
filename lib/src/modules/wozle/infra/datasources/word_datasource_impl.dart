@@ -6,6 +6,7 @@ import 'package:wozle/src/core/extensions/entity_extension.dart';
 import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/word_entity.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource.dart';
+import 'package:wozle/src/modules/wozle/infra/models/word.dart';
 
 class WordRemoteDataSourceImpl extends WordRemoteDataSource {
   final HttpDriver httpDriver;
@@ -17,7 +18,7 @@ class WordRemoteDataSourceImpl extends WordRemoteDataSource {
   });
 
   @override
-  Future<dynamic> getData(
+  Future<Word> getData(
     String endPoint, {
     Map<String, String>? queryParams,
     Map<String, String>? headers,
@@ -31,12 +32,14 @@ class WordRemoteDataSourceImpl extends WordRemoteDataSource {
         ),
       );
       final response = await httpDriver.get(
-        Uri.https(baseUrl, endPoint + word!.body, queryParams),
+        Uri.https(baseUrl, endPoint + word.body, queryParams),
         headers: headers,
       );
-      final decodedResponse = jsonDecode(utf8.decode(response!.bodyBytes));
-      final WordEntity entity = WordEntity.fromJson(decodedResponse[0]);
-      Logger().d("word : ${word.body} ${entity.toModel().toString()}");
+
+      final decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      final entity = WordEntity.fromJson(decodedResponse[0]);
+
+      return entity.toModel();
     } catch (exception) {
       rethrow;
     }
