@@ -14,6 +14,11 @@ extension ErrorObjectExtension on ErrorObject {
         message:
             'It seems that your device is not connected to the network, please check your internet connectivity or try again later.',
       ),
+      unknownFailure: () => const ErrorObject(
+        title: 'Error Code: UNKNOWN',
+        message:
+            'It seems that some unexpected error occoured. Please try again later.',
+      ),
     );
   }
 }

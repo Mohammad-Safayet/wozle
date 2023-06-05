@@ -9,4 +9,6 @@ class FailureEntity with _$FailureEntity {
   const factory FailureEntity.serverFailure() = ServerFailure;
 
   const factory FailureEntity.noConnectionFailure() = NoConnectionFailure;
+
+  const factory FailureEntity.unknownFailure() = UnknownFailure;
 }
