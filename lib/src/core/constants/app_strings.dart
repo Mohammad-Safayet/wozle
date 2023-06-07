@@ -35,3 +35,7 @@ const kEnvRapidApiKey = "RANDOM_WORD_RAPID_API_KEY";
 const kEnvRapidApiValue = "RANDOM_WORD_RAPID_API_Value";
 const kEnvRapidApiHostKey = "RANDOM_WORD_RAPID_Host_KEY";
 const kEnvRapidApiHostValue = "RANDOM_WORD_RAPID_HOST_VALUE";
+
+// hive properties
+const kWordHiveBox = "DAILY_WORD";
+const kWordHivePropsKey = "WORDLIST";
