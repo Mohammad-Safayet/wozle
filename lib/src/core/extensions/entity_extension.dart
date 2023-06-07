@@ -1,9 +1,5 @@
-import 'package:wozle/src/modules/wozle/domain/entities/definition_entity.dart';
-import 'package:wozle/src/modules/wozle/domain/entities/meaning_entity.dart';
-import 'package:wozle/src/modules/wozle/domain/entities/word_entity.dart';
-import 'package:wozle/src/modules/wozle/infra/models/definition.dart';
-import 'package:wozle/src/modules/wozle/infra/models/meaning.dart';
-import 'package:wozle/src/modules/wozle/infra/models/word.dart';
+import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
+import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 
 extension DefinitionExtension on DefinitionEntity {
   Definition toModel() {
@@ -32,6 +28,15 @@ extension WordExtension on WordEntity {
     return Word(
       word: word,
       meanings: meanings.map((meaning) => meaning.toModel()).toList(),
+    );
+  }
+}
+
+extension DailyWordExtension on DailyWordEntity {
+  DailyWord toModel() {
+    return DailyWord(
+      dateTime: time,
+      word: word,
     );
   }
 }
