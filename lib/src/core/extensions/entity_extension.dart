@@ -1,7 +1,7 @@
 import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 
-extension DefinitionExtension on DefinitionEntity {
+extension DefinitionEntityExtension on DefinitionEntity {
   Definition toModel() {
     return Definition(
       definition: definition,
@@ -10,7 +10,7 @@ extension DefinitionExtension on DefinitionEntity {
   }
 }
 
-extension MeaningExtension on MeaningEntity {
+extension MeaningEntityExtension on MeaningEntity {
   Meaning toModel() {
     return Meaning(
       partOfSpeech: partOfSpeech,
@@ -23,7 +23,7 @@ extension MeaningExtension on MeaningEntity {
   }
 }
 
-extension WordExtension on WordEntity {
+extension WordEntityExtension on WordEntity {
   Word toModel() {
     return Word(
       word: word,
@@ -32,11 +32,11 @@ extension WordExtension on WordEntity {
   }
 }
 
-extension DailyWordExtension on DailyWordEntity {
+extension DailyWordEntityExtension on DailyWordEntity {
   DailyWord toModel() {
     return DailyWord(
       dateTime: time,
-      word: word,
+      word: word.toModel(),
     );
   }
 }
