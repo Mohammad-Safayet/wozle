@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import 'package:wozle/src/modules/wozle/infra/models/word.dart';
+import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
 
 part 'daily_word_entity.g.dart';
 
@@ -10,7 +10,7 @@ class DailyWordEntity extends HiveObject {
   DateTime time;
 
   @HiveField(2)
-  Word word;
+  WordEntity word;
 
   DailyWordEntity({
     required this.time,
