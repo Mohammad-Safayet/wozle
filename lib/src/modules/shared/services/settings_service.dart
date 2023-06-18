@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
-import 'package:wozle/src/core/constants/app_strings.dart';
 
-import 'package:wozle/src/modules/shared/drivers/storage_service.dart';
+import 'package:wozle/src/core/constants/app_strings.dart';
+import 'package:wozle/src/modules/shared/services/shared_prefs_service.dart';
 
 class SettingsService extends GetxService {
   final isDarkModeOn = true.obs;
   final isHardMode = false.obs;
   final isDialogOnStartOn = true.obs;
 
-  final StorageService storage;
+  final SharedPrefsService storage;
 
   static SettingsService get to => Get.find();
 
@@ -37,7 +37,7 @@ class SettingsService extends GetxService {
 
     return result;
   }
-  
+
   Future<bool> changeIsDialogOnStartOn(bool value) async {
     final result = await storage.setBool(kSpOnStartKey, value);
     isHardMode.value = value;

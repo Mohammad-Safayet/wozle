@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/nav_content.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/nav_header.dart';
-import 'package:wozle/src/modules/shared/drivers/navigation_service.dart';
+import 'package:wozle/src/modules/shared/services/navigation_service.dart';
 
 class NavDrawer extends StatelessWidget {
   NavDrawer({

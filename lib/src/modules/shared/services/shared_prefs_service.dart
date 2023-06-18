@@ -2,12 +2,12 @@ import 'package:get/get.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class StorageService extends GetxService {
-  static StorageService get to => Get.find();
+class SharedPrefsService extends GetxService {
+  static SharedPrefsService get to => Get.find();
 
   late final SharedPreferences _preferences;
 
-  Future<StorageService> init() async {
+  Future<SharedPrefsService> init() async {
     _preferences = await SharedPreferences.getInstance();
     return this;
   }
@@ -65,12 +65,10 @@ class StorageService extends GetxService {
   }
 
   Future<bool> setString(String key, String value) {
-        return _preferences.setString(key, value);
-
+    return _preferences.setString(key, value);
   }
 
   Future<bool> setStringList(String key, List<String> value) {
-        return _preferences.setStringList(key, value);
-
+    return _preferences.setStringList(key, value);
   }
 }

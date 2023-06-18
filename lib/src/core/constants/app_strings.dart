@@ -23,3 +23,19 @@ const kPlayExample3 = "The letter(s) in the grey space is not in the word";
 const kSpOnStartKey = "latif.safayet.wozle-onStartKey";
 const kSpIsDarkModeKey = "latif.safayet.wozle-IsDarkMode";
 const kSpIsHardModeKey = "latif.safayet.wozle-IsHardMode";
+
+// API urls and endpoints
+const kApiRandomWordUrl = "random-words5.p.rapidapi.com";
+const kApiRandomWordEndpoint = "/getRandom";
+const kApiWordDictionaryUrl = "api.dictionaryapi.dev";
+const kApiWordDictionaryEndpoint = "/api/v2/entries/en";
+
+// .env properties
+const kEnvRapidApiKey = "RANDOM_WORD_RAPID_API_KEY";
+const kEnvRapidApiValue = "RANDOM_WORD_RAPID_API_VALUE";
+const kEnvRapidApiHostKey = "RANDOM_WORD_RAPID_HOST_KEY";
+const kEnvRapidApiHostValue = "RANDOM_WORD_RAPID_HOST_VALUE";
+
+// hive properties
+const kWordHiveBox = "DAILY_WORD";
+const kWordHivePropsKey = "WORDLIST";

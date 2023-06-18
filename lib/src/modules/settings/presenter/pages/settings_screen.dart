@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:wozle/src/modules/settings/presenter/pages/settings_controller.dart';
 import 'package:wozle/src/modules/settings/presenter/widgets/settings_app_bar.dart';
 import 'package:wozle/src/modules/settings/presenter/widgets/settings_tile.dart';
-import 'package:wozle/src/modules/shared/drivers/storage_service.dart';
+import 'package:wozle/src/modules/shared/services/shared_prefs_service.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -14,7 +14,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final storage = StorageService.to;
+  final storage = SharedPrefsService.to;
   final controller = SettingsController.to;
 
   @override

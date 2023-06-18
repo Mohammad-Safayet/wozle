@@ -2,11 +2,13 @@ import 'package:get/get.dart';
 
 import 'package:wozle/src/modules/home/home.dart';
 import 'package:wozle/src/modules/home/presenter/bindings/home_binding.dart';
-import 'package:wozle/src/modules/home/presenter/pages/home_screen_controller.dart';
 import 'package:wozle/src/modules/settings/presenter/bindings/settings_binding.dart';
 import 'package:wozle/src/modules/settings/settings.dart';
+import 'package:wozle/src/modules/wozle/presenter/bindings/word_datasource_bindings.dart';
 import 'package:wozle/src/modules/wozle/presenter/bindings/word_form_bindings.dart';
 import 'package:wozle/src/modules/wozle/presenter/bindings/word_form_list_binding.dart';
+import 'package:wozle/src/modules/wozle/presenter/bindings/word_repo_bindings.dart';
+import 'package:wozle/src/modules/wozle/presenter/bindings/wozle_binding.dart';
 import 'package:wozle/src/modules/wozle/wozle.dart';
 
 part 'app_routes.dart';
@@ -28,6 +30,9 @@ class AppPages {
       bindings: [
         WordFormListBinding(),
         WordFormBinding(),
+        WordDatasourceBinding(),
+        WordRepoBinding(),
+        WozleBinding(),
       ],
     ),
     GetPage(
