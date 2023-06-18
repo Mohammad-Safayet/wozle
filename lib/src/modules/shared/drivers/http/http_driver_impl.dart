@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart';
 import 'package:logger/logger.dart';
@@ -9,7 +10,7 @@ import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
 
 class HttpDriverImpl extends HttpDriver {
   final Client client;
-  final timeLimit = const Duration(seconds: 30);
+  final timeLimit = const Duration(seconds: 10);
 
   HttpDriverImpl({
     required this.client,
@@ -38,6 +39,8 @@ class HttpDriverImpl extends HttpDriver {
         }
         throw ServerException();
       }
+    } on SocketException catch(_) {
+      throw NoConnectionException();
     } catch (exception) {
       Logger().e(
         "HttpDriverImpl: ${client.toString()} get exception ${exception.toString()}",
