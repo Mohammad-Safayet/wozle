@@ -39,3 +39,5 @@ const kEnvRapidApiHostValue = "RANDOM_WORD_RAPID_HOST_VALUE";
 // hive properties
 const kWordHiveBox = "DAILY_WORD";
 const kWordHivePropsKey = "WORDLIST";
+const kProgressionHiveBox = "USER_PROGRESSION";
+const kProgressionHivPropsKey = "PROGRESSION";
