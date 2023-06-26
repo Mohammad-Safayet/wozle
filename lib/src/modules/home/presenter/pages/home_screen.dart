@@ -20,7 +20,6 @@ class HomeScreen extends StatelessWidget {
 
     if (isStartDialogOff) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        // Add Your Code here.
         Get.toNamed(Routes.WOZLE);
       });
     } else {
