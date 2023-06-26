@@ -1,5 +1,5 @@
-import 'package:wozle/src/modules/wozle/infra/datasources/word_local_datasource_impl.dart';
-import 'package:wozle/src/modules/wozle/infra/datasources/word_remote_datasource_impl.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/word_local_datasource_impl.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/word_remote_datasource_impl.dart';
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 import 'package:wozle/src/modules/wozle/infra/repositories/word_repo.dart';
 
