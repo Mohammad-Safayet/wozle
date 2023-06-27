@@ -13,29 +13,22 @@ class ProgressionDatasourceImpl extends ProgressionDatasource {
       final box = await futureBox;
 
       final progression = box.get(kProgressionHivPropsKey);
-
       return progression;
     } catch (e) {
       rethrow;
     }
   }
 
-  @override
+@override
   Future<Progression> init() async {
     try {
-      final data = await getProgressionData();
-
-      if (data != null) {
-        return data;
-      }
-
       const progression = Progression(
         totalTimePlayed: 0,
         winRatio: 0,
         currentStreak: 0,
         maxStreak: 0,
       );
-      updateProgressionData(progression);
+      await updateProgressionData(progression);
 
       return progression;
     } catch (e) {
