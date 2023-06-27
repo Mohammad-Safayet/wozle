@@ -6,7 +6,7 @@ import 'package:wozle/src/core/config/build_config.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/routes/app_pages.dart';
 import 'package:wozle/src/modules/shared/dialogs/info_dialog.dart';
-import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/statistics_chart_dialog.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/statistics_chart_dialog.dart';
 import 'package:wozle/src/modules/shared/services/navigation_service.dart';
 
 class NavBarContent extends StatelessWidget {

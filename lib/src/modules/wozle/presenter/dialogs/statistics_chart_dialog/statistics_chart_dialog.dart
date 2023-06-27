@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/dialog_heading.dart';
-import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/statistics_bar_chart_graph.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/dialog_heading.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/statistics_bar_chart_graph.dart';
 
 class StatisticsChartDialog extends StatelessWidget {
   const StatisticsChartDialog({super.key});
