@@ -4,6 +4,7 @@ import 'package:wozle/src/modules/home/home.dart';
 import 'package:wozle/src/modules/home/presenter/bindings/home_binding.dart';
 import 'package:wozle/src/modules/settings/presenter/bindings/settings_binding.dart';
 import 'package:wozle/src/modules/settings/settings.dart';
+import 'package:wozle/src/modules/wozle/presenter/bindings/progression_binding.dart';
 import 'package:wozle/src/modules/wozle/presenter/bindings/word_datasource_bindings.dart';
 import 'package:wozle/src/modules/wozle/presenter/bindings/word_form_bindings.dart';
 import 'package:wozle/src/modules/wozle/presenter/bindings/word_form_list_binding.dart';
@@ -33,6 +34,7 @@ class AppPages {
         WordDatasourceBinding(),
         WordRepoBinding(),
         WozleBinding(),
+        ProgressionBinding(),
       ],
     ),
     GetPage(
