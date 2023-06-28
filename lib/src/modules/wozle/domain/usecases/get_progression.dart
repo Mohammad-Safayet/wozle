@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 import 'package:wozle/src/core/utils/error_handling/error_handling.dart';
 import 'package:wozle/src/modules/wozle/infra/models/progression.dart';
 import 'package:wozle/src/modules/wozle/infra/repositories/progression_repo.dart';
@@ -20,7 +21,8 @@ class GetProgressionUsecase {
     } on NoConnectionException {
       return const Left(NoConnectionFailure());
     } catch (e) {
-      throw const Left(UnknownFailure());
+      Logger().e("error: $e");
+      return const Left(UnknownFailure());
     }
   }
 }

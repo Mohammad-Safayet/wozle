@@ -20,7 +20,7 @@ class GetDailyWordUsecase {
     } on NoConnectionException {
       return const Left(NoConnectionFailure());
     } catch (e) {
-      throw const Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
   }
 }
