@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:wozle/src/core/extensions/error_object_extension.dart';
 
+import 'package:wozle/src/core/extensions/error_object_extension.dart';
 import 'package:wozle/src/core/utils/error_handling/error_handling.dart';
-import 'package:wozle/src/modules/wozle/domain/repositories/word_repo_impl.dart';
 import 'package:wozle/src/modules/wozle/domain/usecases/get_daily_word.dart';
 import 'package:wozle/src/modules/wozle/infra/models/daily_word.dart';
+import 'package:wozle/src/modules/wozle/infra/repositories/word_repo.dart';
 
 enum AppStatus {
   loading,
@@ -19,7 +19,11 @@ class WozleScreenController extends GetxController {
   late DailyWord word;
   late ErrorObject errorObject;
   final status = AppStatus.loading.obs;
-  final wordRepository = Get.find<WordRepositoryImpl>();
+  final WordRepository wordRepository;
+
+  WozleScreenController({
+    required this.wordRepository,
+  });
 
   @override
   void onInit() async {
