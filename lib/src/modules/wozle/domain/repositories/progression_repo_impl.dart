@@ -1,3 +1,4 @@
+import 'package:logger/logger.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/progression_datasource/progression_datasource.dart';
 import 'package:wozle/src/modules/wozle/infra/models/progression.dart';
 import 'package:wozle/src/modules/wozle/infra/repositories/progression_repo.dart';
