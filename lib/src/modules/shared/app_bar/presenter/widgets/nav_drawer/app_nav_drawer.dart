@@ -7,9 +7,11 @@ import 'package:wozle/src/modules/shared/services/navigation_service.dart';
 class NavDrawer extends StatelessWidget {
   NavDrawer({
     Key? key,
+    required this.features,
   }) : super(key: key);
 
   final _controller = NavigationSerivce.to;
+  final List<Widget> features;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class NavDrawer extends StatelessWidget {
           const NavHeader(),
           NavBarContent(
             navController: _controller,
+            list: features,
           ),
         ],
       ),

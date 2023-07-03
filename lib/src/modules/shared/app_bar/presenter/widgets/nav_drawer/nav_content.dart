@@ -5,82 +5,35 @@ import 'package:logger/logger.dart';
 import 'package:wozle/src/core/config/build_config.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/routes/app_pages.dart';
-import 'package:wozle/src/modules/shared/dialogs/info_dialog.dart';
-import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/statistics_chart_dialog.dart';
+import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/nav_tile.dart';
 import 'package:wozle/src/modules/shared/services/navigation_service.dart';
 
 class NavBarContent extends StatelessWidget {
   const NavBarContent({
     Key? key,
     required this.navController,
+    required this.list,
   }) : super(key: key);
 
   final NavigationSerivce navController;
-
+  final List<Widget> list;
   @override
   Widget build(BuildContext context) {
-    final navOptions = <Widget>[
-      ListTile(
+    final defaultList = <Widget>[
+      NavListTile(
         onTap: () {
           Navigator.pop(context);
 
           navController.changeRoute(Routes.WOZLE);
           Get.toNamed(Routes.SETTINGS);
         },
-        leading: Icon(
+        icon: Icon(
           Icons.settings_rounded,
           color: Theme.of(context).colorScheme.onPrimary,
         ),
-        title: Text(
-          kNavMenuItemString1,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
-        ),
+        title: kNavMenuItemString1,
       ),
-      ListTile(
-        onTap: () {
-          Navigator.pop(context);
-
-          navController.changeRoute(Routes.WOZLE);
-          showDialog(
-            context: context,
-            builder: (context) => const StatisticsChartDialog(),
-          );
-        },
-        leading: Icon(
-          Icons.bar_chart_outlined,
-          color: Theme.of(context).colorScheme.onPrimary,
-        ),
-        title: Text(
-          kNavMenuItemString2,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
-        ),
-      ),
-      ListTile(
-        onTap: () {
-          Navigator.pop(context);
-
-          navController.changeRoute(Routes.WOZLE);
-          showDialog(
-            context: context,
-            builder: (context) => const InfoDialog(),
-          );
-        },
-        leading: Icon(
-          Icons.help_outline_rounded,
-          color: Theme.of(context).colorScheme.onPrimary,
-        ),
-        title: Text(
-          kNavMenuItemString3,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
-        ),
-      ),
-      ListTile(
+      NavListTile(
         onTap: () {
           Navigator.pop(context);
           BuildConfig config = BuildConfig.instance;
@@ -94,17 +47,13 @@ class NavBarContent extends StatelessWidget {
               width: 50,
             ),
           );
+
         },
-        leading: Icon(
+        icon: Icon(
           Icons.info_outline_rounded,
           color: Theme.of(context).colorScheme.onPrimary,
         ),
-        title: Text(
-          kNavMenuItemString4,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
-        ),
+        title: kNavMenuItemString2,
       ),
     ];
 
@@ -153,8 +102,11 @@ class NavBarContent extends StatelessWidget {
             child: Divider(),
           ),
 
+          // Feature specific list
+          ...list,
+
           // Navigation option application
-          ...navOptions,
+          ...defaultList,
         ],
       ),
     );
