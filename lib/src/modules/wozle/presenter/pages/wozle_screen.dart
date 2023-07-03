@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wozle/src/core/constants/app_strings.dart';
+import 'package:wozle/src/core/routes/app_pages.dart';
 
 import 'package:wozle/src/modules/shared/app_bar/app_bar.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer.dart';
+import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/nav_tile.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/info_dialog.dart';
 import 'package:wozle/src/modules/shared/error_page/error_page.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/presenter/statistics_chart_dialog.dart';
 import 'package:wozle/src/modules/wozle/presenter/pages/wozle_screen_controller.dart';
 import 'package:wozle/src/modules/wozle/presenter/widgets/word_form_list/word_form_list.dart';
 
@@ -34,7 +39,42 @@ class WozleScreen extends StatelessWidget {
                         errorObject: controller.errorObject,
                       ),
           ),
-          drawer: NavDrawer(),
+          drawer: NavDrawer(
+            features: [
+              NavListTile(
+                onTap: () async {
+                  Navigator.pop(context);
+
+                  await showDialog(
+                    context: context,
+                    builder: (context) => const StatisticsChartDialog(),
+                  );
+                  Get.toNamed(Routes.WOZLE);
+                },
+                icon: Icon(
+                  Icons.bar_chart_outlined,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                title: kWozleNavMenuItemString1,
+              ),
+              NavListTile(
+                onTap: () async {
+                  Navigator.pop(context);
+
+                  await showDialog(
+                    context: context,
+                    builder: (context) => const InfoDialog(),
+                  );
+                  Get.toNamed(Routes.WOZLE);
+                },
+                icon: Icon(
+                  Icons.help_outline_rounded,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                title: kWozleNavMenuItemString2,
+              ),
+            ],
+          ),
         );
       },
     );
