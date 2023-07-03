@@ -6,6 +6,7 @@ import 'package:wozle/src/core/config/build_config.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/routes/app_pages.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/nav_tile.dart';
+import 'package:wozle/src/modules/shared/dialogs/about_dialog.dart';
 import 'package:wozle/src/modules/shared/services/navigation_service.dart';
 
 class NavBarContent extends StatelessWidget {
@@ -37,17 +38,13 @@ class NavBarContent extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
           BuildConfig config = BuildConfig.instance;
-          showAboutDialog(
+          showDialog(
             context: context,
-            applicationName: config.envConfig.appName,
-            applicationVersion: config.envConfig.appVersion,
-            applicationIcon: Image.asset(
-              "assets/icons/wozle_icon.png",
-              height: 50,
-              width: 50,
+            builder: (context) => CustomAboutDialog(
+              config: config,
+              onClose: () {},
             ),
           );
-
         },
         icon: Icon(
           Icons.info_outline_rounded,
