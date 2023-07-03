@@ -24,7 +24,7 @@ class StatisticsChartDialog extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.of(context).pop();
                   },
                   icon: Icon(
                     Icons.close,
