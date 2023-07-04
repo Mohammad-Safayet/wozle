@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wozle/src/core/constants/app_strings.dart';
-import 'package:wozle/src/core/routes/app_pages.dart';
 
+import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/modules/shared/app_bar/app_bar.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/nav_tile.dart';
@@ -43,13 +42,10 @@ class WozleScreen extends StatelessWidget {
             features: [
               NavListTile(
                 onTap: () async {
-                  Navigator.pop(context);
-
                   await showDialog(
                     context: context,
                     builder: (context) => const StatisticsChartDialog(),
                   );
-                  Get.toNamed(Routes.WOZLE);
                 },
                 icon: Icon(
                   Icons.bar_chart_outlined,
@@ -59,13 +55,10 @@ class WozleScreen extends StatelessWidget {
               ),
               NavListTile(
                 onTap: () async {
-                  Navigator.pop(context);
-
                   await showDialog(
                     context: context,
                     builder: (context) => const InfoDialog(),
                   );
-                  Get.toNamed(Routes.WOZLE);
                 },
                 icon: Icon(
                   Icons.help_outline_rounded,

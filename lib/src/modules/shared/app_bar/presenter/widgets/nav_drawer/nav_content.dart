@@ -23,9 +23,9 @@ class NavBarContent extends StatelessWidget {
     final defaultList = <Widget>[
       NavListTile(
         onTap: () {
-          Navigator.pop(context);
-
-          navController.changeRoute(Routes.WOZLE);
+          navController.changeRoute(navController.route.value!);
+          Logger().d("route = ${navController.route.value}");
+          
           Get.toNamed(Routes.SETTINGS);
         },
         icon: Icon(
@@ -36,7 +36,6 @@ class NavBarContent extends StatelessWidget {
       ),
       NavListTile(
         onTap: () {
-          Navigator.pop(context);
           BuildConfig config = BuildConfig.instance;
           showDialog(
             context: context,
@@ -58,7 +57,7 @@ class NavBarContent extends StatelessWidget {
       ListTile(
         onTap: () {
           Navigator.pop(context);
-          navController.changeRoute(Routes.WOZLE);
+
           Get.toNamed(Routes.WOZLE);
         },
         //TODO: change the icon
