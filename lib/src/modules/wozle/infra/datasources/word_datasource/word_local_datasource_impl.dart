@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/daily_word_entity.dart';
-import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/word_datasource.dart';
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 import 'package:wozle/src/core/extensions/extensions.dart';
 

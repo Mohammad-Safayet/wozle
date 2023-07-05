@@ -4,9 +4,7 @@ const kHomeItemString1 = "Wozle";
 
 // Navigation Item Strings
 const kNavMenuItemString1 = "Settings";
-const kNavMenuItemString2 = "Statistics";
-const kNavMenuItemString3 = "How to play";
-const kNavMenuItemString4 = "About";
+const kNavMenuItemString2 = "About";
 
 // How to Play Strings
 const kPlayInstructionHeading = "How To Play";
@@ -18,6 +16,10 @@ const kPlayExample1 =
 const kPlayExample2 =
     "The letter(s) in the yellow space is in the word but not in the correct spot";
 const kPlayExample3 = "The letter(s) in the grey space is not in the word";
+
+// Wozle Navbar Item Strings
+const kWozleNavMenuItemString1 = "Statistics";
+const kWozleNavMenuItemString2 = "How to play";
 
 // SharedPreferences Key Strings
 const kSpOnStartKey = "latif.safayet.wozle-onStartKey";
@@ -39,3 +41,5 @@ const kEnvRapidApiHostValue = "RANDOM_WORD_RAPID_HOST_VALUE";
 // hive properties
 const kWordHiveBox = "DAILY_WORD";
 const kWordHivePropsKey = "WORDLIST";
+const kProgressionHiveBox = "USER_PROGRESSION";
+const kProgressionHivPropsKey = "PROGRESSION";

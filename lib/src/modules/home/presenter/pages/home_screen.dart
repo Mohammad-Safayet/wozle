@@ -6,7 +6,8 @@ import 'package:wozle/src/modules/home/presenter/pages/home_screen_controller.da
 
 import 'package:wozle/src/modules/shared/app_bar/app_bar.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer.dart';
-import 'package:wozle/src/modules/shared/dialogs/info_dialog.dart';
+import 'package:wozle/src/modules/shared/services/navigation_service.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/info_dialog.dart';
 import 'package:wozle/src/modules/shared/services/shared_prefs_service.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,10 +18,12 @@ class HomeScreen extends StatelessWidget {
     final storageService = SharedPrefsService.to;
     final isStartDialogOff = storageService.getBool(kSpOnStartKey) ?? false;
     final controller = HomeScreenController.to;
+    final navController = NavigationSerivce.to;
 
     if (isStartDialogOff) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        // Add Your Code here.
+        navController.changeRoute(Routes.WOZLE);
+
         Get.toNamed(Routes.WOZLE);
       });
     } else {
@@ -32,6 +35,8 @@ class HomeScreen extends StatelessWidget {
             context: context,
             builder: (context) => InfoDialog(
               onClose: () {
+                navController.changeRoute(Routes.WOZLE);
+
                 Get.toNamed(Routes.WOZLE);
               },
             ),
@@ -46,7 +51,9 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         color: Theme.of(context).colorScheme.background,
       ),
-      drawer: NavDrawer(),
+      drawer: NavDrawer(
+        features: const [],
+      ),
     );
   }
 }

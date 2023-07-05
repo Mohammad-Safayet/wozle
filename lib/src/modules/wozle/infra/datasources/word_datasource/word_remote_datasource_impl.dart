@@ -8,7 +8,7 @@ import 'package:wozle/src/core/extensions/entity_extension.dart';
 import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/word_entity.dart';
-import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/word_datasource.dart';
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 
 class WordRemoteDataSourceImpl extends WordDataSource {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/models/guess_distribution.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/models/guess_distribution.dart';
 
 class StatisticsBarCharGraph extends StatefulWidget {
   const StatisticsBarCharGraph({Key? key}) : super(key: key);

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/dialog_heading.dart';
-import 'package:wozle/src/modules/shared/dialogs/statistics_chart_dialog/statistics_bar_chart_graph.dart';
+
+// import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/controllers/statistics_chart_controller.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/presenter/dialog_heading.dart';
+import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/presenter/statistics_bar_chart_graph.dart';
 
 class StatisticsChartDialog extends StatelessWidget {
   const StatisticsChartDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // final controller = StatisticsChartDialogController.to;
+
     return Dialog(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       child: SizedBox(
@@ -20,7 +24,7 @@ class StatisticsChartDialog extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.of(context).pop();
                   },
                   icon: Icon(
                     Icons.close,
