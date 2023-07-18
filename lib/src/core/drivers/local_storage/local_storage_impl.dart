@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:wozle/src/modules/shared/drivers/local_storage/local_storage.dart';
+import 'package:wozle/src/core/drivers/local_storage/local_storage.dart';
 
 class LocalStorageImpl extends LocalStorage {
   @override

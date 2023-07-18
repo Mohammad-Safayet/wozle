@@ -5,7 +5,7 @@ import 'package:logger/logger.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/extensions/entity_extension.dart';
 
-import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
+import 'package:wozle/src/core/drivers/http/http_driver.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/word_entity.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/word_datasource.dart';
