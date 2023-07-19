@@ -58,6 +58,7 @@ app.*.map.json
 **/*.g.dart
 **/*.freezed.dart
 **/*-model.js
+**/*.mocks.dart
 
 # secrets
 **/*.env
