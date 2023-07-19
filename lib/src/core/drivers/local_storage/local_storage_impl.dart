@@ -5,12 +5,20 @@ import 'package:wozle/src/core/drivers/local_storage/local_storage.dart';
 class LocalStorageImpl extends LocalStorage {
   @override
   Future<void> closeBox() async {
-    await Hive.close();
+    try {
+      await Hive.close();
+    } catch (exception) {
+      rethrow;
+    }
   }
 
   @override
   Future<void> initialize() async {
-    await Hive.initFlutter();
+    try {
+      await Hive.initFlutter();
+    } catch (exception) {
+      rethrow;
+    }
   }
 
   @override
@@ -19,5 +27,4 @@ class LocalStorageImpl extends LocalStorage {
 
     return box;
   }
-  
 }
