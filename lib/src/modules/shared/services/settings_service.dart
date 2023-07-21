@@ -40,7 +40,7 @@ class SettingsService extends GetxService {
 
   Future<bool> changeIsDialogOnStartOn(bool value) async {
     final result = await storage.setBool(kSpOnStartKey, value);
-    isHardMode.value = value;
+    isDialogOnStartOn.value = value;
 
     return result;
   }
