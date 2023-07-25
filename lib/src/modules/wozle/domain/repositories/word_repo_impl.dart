@@ -1,24 +1,24 @@
-import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/word_local_datasource_impl.dart';
-import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/word_remote_datasource_impl.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/local/word_local_datasource.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/remote/word_remote_datasource.dart';
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 import 'package:wozle/src/modules/wozle/infra/repositories/word_repo.dart';
 
 class WordRepositoryImpl extends WordRepository {
-  final WordLocalDatasourceImpl localDatasourceImpl;
-  final WordRemoteDataSourceImpl remoteDataSourceImpl;
+  final WordLocalDataSource localDatasource;
+  final WordRemoteDataSource remoteDataSource;
 
   WordRepositoryImpl({
-    required this.localDatasourceImpl,
-    required this.remoteDataSourceImpl,
+    required this.localDatasource,
+    required this.remoteDataSource,
   });
 
 
   @override
   Future<DailyWord> getDailyWord() async {
-    DailyWord? word = await localDatasourceImpl.getData();
-    word ??= await remoteDataSourceImpl.getData();
+    DailyWord? word = await localDatasource.getData();
+    word ??= await remoteDataSource.getData();
 
-    await localDatasourceImpl.saveData(word!);
+    await localDatasource.saveData(word!);
 
     return word;
   }

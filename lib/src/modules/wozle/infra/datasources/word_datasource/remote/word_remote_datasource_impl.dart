@@ -5,13 +5,13 @@ import 'package:logger/logger.dart';
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/extensions/entity_extension.dart';
 
-import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
+import 'package:wozle/src/core/drivers/http/http_driver.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/word_entity.dart';
-import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/word_datasource.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/remote/word_remote_datasource.dart';
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 
-class WordRemoteDataSourceImpl extends WordDataSource {
+class WordRemoteDataSourceImpl extends WordRemoteDataSource {
   final HttpDriver httpDriver;
   final String baseUrl;
 
@@ -46,12 +46,6 @@ class WordRemoteDataSourceImpl extends WordDataSource {
       Logger().e("Error on getData: $exception");
       rethrow;
     }
-  }
-
-  @override
-  Future<dynamic> saveData(DailyWord dailyWord) {
-    // TODO: implement saveData
-    throw UnimplementedError();
   }
 
   Future<String> _getRandomWord(String wordLength) async {

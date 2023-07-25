@@ -6,7 +6,7 @@ import 'package:logger/logger.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 
 import 'package:wozle/src/core/utils/error_handling/error_handling.dart';
-import 'package:wozle/src/modules/shared/drivers/http/http_driver.dart';
+import 'package:wozle/src/core/drivers/http/http_driver.dart';
 
 class HttpDriverImpl extends HttpDriver {
   final Client client;
