@@ -21,7 +21,7 @@ class WordRemoteDataSourceImpl extends WordRemoteDataSource {
   });
 
   @override
-  Future<DailyWord?> getData() async {
+  Future<DailyWord> getData() async {
     try {
       final word = await _getRandomWord("5");
 
