@@ -18,7 +18,7 @@ class WordRepositoryImpl extends WordRepository {
     DailyWord? word = await localDatasource.getData();
     word ??= await remoteDataSource.getData();
 
-    await localDatasource.saveData(word!);
+    await localDatasource.saveData(word);
 
     return word;
   }
