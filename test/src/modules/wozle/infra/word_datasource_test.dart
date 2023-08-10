@@ -20,16 +20,17 @@ import 'word_datasource_test.mocks.dart';
 )
 void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: "env/dev.env");
-  late MockHttpDriver mockHttpDriver;
-
-  setUpAll(() {
-    mockHttpDriver = MockHttpDriver();
-  });
 
   group(
-    "WordRemoteDatasource",
-    () {
+    "WordRemoteDatasource Test",
+    () async {
+      await dotenv.load(fileName: "env/dev.env");
+      late MockHttpDriver mockHttpDriver;
+
+      setUpAll(() {
+        mockHttpDriver = MockHttpDriver();
+      });
+
       test(
         "returns a DailyWord if the getData completes successfully",
         () async {
