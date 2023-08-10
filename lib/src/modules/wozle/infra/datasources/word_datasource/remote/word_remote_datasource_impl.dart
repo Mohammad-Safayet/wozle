@@ -1,11 +1,13 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
+
 import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/extensions/entity_extension.dart';
-
 import 'package:wozle/src/core/drivers/http/http_driver.dart';
+import 'package:wozle/src/core/utils/error_handling/execptions.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/word_entity.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/remote/word_remote_datasource.dart';
@@ -32,18 +34,29 @@ class WordRemoteDataSourceImpl extends WordRemoteDataSource {
         ),
       );
 
-      final decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
-      final entity = WordEntity.fromJson(decodedResponse[0]);
+      if (response.statusCode == HttpStatus.ok) {
+        final decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
+        final entity = WordEntity.fromJson(decodedResponse[0]);
 
-      final dailyWord = DailyWord(
-        dateTime: DateTime.now(),
-        word: entity.toModel(),
-      );
-      Logger().d(dailyWord.toString());
+        final dailyWord = DailyWord(
+          dateTime: DateTime.now(),
+          word: entity.toModel(),
+        );
+        Logger().d(dailyWord.toString());
 
-      return dailyWord;
+        return dailyWord;
+      } else {
+        if (response.statusCode == HttpStatus.requestTimeout) {
+          throw NoConnectionException();
+        }
+        throw ServerException();
+      }
+    } on SocketException catch (_) {
+      throw NoConnectionException();
     } catch (exception) {
-      Logger().e("Error on getData: $exception");
+      Logger().e(
+        "HttpDriverImpl: got exception ${exception.toString()}",
+      );
       rethrow;
     }
   }
@@ -64,12 +77,22 @@ class WordRemoteDataSourceImpl extends WordRemoteDataSource {
         headers: headers,
       );
 
-      final word = response.body;
+      if (response.statusCode == HttpStatus.ok) {
+        final word = response.body;
 
-      return word;
-    } catch (e) {
-      Logger().e("Error on _getRandomWord: $e");
-      
+        return word;
+      } else {
+        if (response.statusCode == HttpStatus.requestTimeout) {
+          throw NoConnectionException();
+        }
+        throw ServerException();
+      }
+    } on SocketException catch (_) {
+      throw NoConnectionException();
+    } catch (exception) {
+      Logger().e(
+        "HttpDriverImpl: got exception ${exception.toString()}",
+      );
       rethrow;
     }
   }
