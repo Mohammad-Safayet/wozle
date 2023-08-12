@@ -11,11 +11,18 @@ class LocalStorageImpl extends LocalStorage {
       rethrow;
     }
   }
-
+  
   @override
-  Future<void> initialize() async {
+  Future<void> initialize({
+    List<TypeAdapter<dynamic>> adapters = const [],
+  }) async {
     try {
       await Hive.initFlutter();
+      if (adapters.isNotEmpty) {
+        for (var adapter in adapters) {
+          Hive.registerAdapter(adapter);
+        }
+      }
     } catch (exception) {
       rethrow;
     }
