@@ -11,7 +11,7 @@ class LocalStorageImpl extends LocalStorage {
       rethrow;
     }
   }
-  
+
   @override
   Future<void> initialize({
     List<TypeAdapter<dynamic>> adapters = const [],
@@ -29,8 +29,8 @@ class LocalStorageImpl extends LocalStorage {
   }
 
   @override
-  Future<Box> openBox(String name) async {
-    final box = await Hive.openBox(name);
+  Future<Box<T>> openBox<T>(String name) async {
+    final box = await Hive.openBox<T>(name);
 
     return box;
   }
