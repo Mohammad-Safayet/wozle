@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:wozle/src/core/constants/app_strings.dart';
+import 'package:wozle/src/core/error_page/error_page.dart';
 import 'package:wozle/src/modules/shared/app_bar/app_bar.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/app_nav_drawer.dart';
 import 'package:wozle/src/modules/shared/app_bar/presenter/widgets/nav_drawer/nav_tile.dart';
 import 'package:wozle/src/modules/wozle/presenter/dialogs/info_dialog.dart';
-import 'package:wozle/src/core/error_page/error_page.dart';
 import 'package:wozle/src/modules/wozle/presenter/dialogs/statistics_chart_dialog/presenter/statistics_chart_dialog.dart';
 import 'package:wozle/src/modules/wozle/presenter/pages/wozle_screen_controller.dart';
 import 'package:wozle/src/modules/wozle/presenter/widgets/word_form_list/word_form_list.dart';
