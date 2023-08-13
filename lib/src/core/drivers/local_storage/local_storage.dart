@@ -5,7 +5,7 @@ abstract class LocalStorage {
     List<TypeAdapter<dynamic>> adapters,
   });
 
-  Future<Box> openBox(String name);
+  Future<Box<T>> openBox<T>(String name);
 
   Future<void> closeBox();
 }
