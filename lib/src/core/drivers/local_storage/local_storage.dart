@@ -1,9 +1,11 @@
 import 'package:hive/hive.dart';
 
 abstract class LocalStorage {
-  Future<void> initialize();
+  Future<void> initialize({
+    List<TypeAdapter<dynamic>> adapters,
+  });
 
-  Future<Box> openBox(String name);
+  Future<Box<T>> openBox<T>(String name);
 
   Future<void> closeBox();
 }

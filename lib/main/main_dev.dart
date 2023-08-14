@@ -5,7 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:wozle/src/app.dart';
 import 'package:wozle/src/core/config/config.dart';
-import 'package:wozle/src/modules/shared/services/hive_service.dart';
+import 'package:wozle/src/modules/shared/services/local_storage_service.dart';
 import 'package:wozle/src/modules/shared/services/navigation_service.dart';
 import 'package:wozle/src/modules/shared/services/settings_service.dart';
 import 'package:wozle/src/modules/shared/services/shared_prefs_service.dart';
@@ -26,7 +26,7 @@ Future<void> main() async {
 
   await dotenv.load(fileName: "env/dev.env");
 
-  await HiveService.init();
+  await LocalStorageService.init();
 
   await Get.putAsync(
     () => SharedPrefsService().init(),
