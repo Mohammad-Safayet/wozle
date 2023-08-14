@@ -1,11 +1,18 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:wozle/src/core/constants/app_strings.dart';
 
 import 'package:wozle/src/core/drivers/http/http_driver.dart';
+import 'package:wozle/src/core/drivers/local_storage/local_storage.dart';
+import 'package:wozle/src/core/drivers/local_storage/local_storage_impl.dart';
+import 'package:wozle/src/core/extensions/extensions.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/local/word_local_datasource.dart';
+import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/local/word_local_datasource_impl.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/remote/word_remote_datasource.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/remote/word_remote_datasource_impl.dart';
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
@@ -15,6 +22,12 @@ import 'word_datasource_test.mocks.dart';
 @GenerateMocks(
   [
     HttpDriver,
+    HiveInterface,
+    LocalStorage,
+    LocalStorageImpl,
+    Box,
+    DailyWord,
+    DailyWordEntity,
     WordEntity,
   ],
 )
@@ -148,6 +161,52 @@ void main() async {
           );
         },
       );
+    },
+  );
+
+  group(
+    "WordLocalDatasource test",
+    () {
+      late final WordLocalDataSource wordLocalDataSource;
+      final MockLocalStorageImpl mockLocalStorage = MockLocalStorageImpl();
+
+      final dailyWordEntity = MockDailyWordEntity();
+      final dailyWord = MockDailyWord();
+      final wordEntity = MockWordEntity();
+
+      setUpAll(() async {
+        await mockLocalStorage.initialize();
+
+        wordLocalDataSource = WordLocalDatasourceImpl(
+          localStorage: mockLocalStorage,
+        );
+      });
+
+      tearDownAll(() {});
+
+      test(
+        "return null if data does not exist in the database",
+        () async {
+          final box = MockBox<List>();
+          when(
+            mockLocalStorage.openBox<List>(kWordHiveBox),
+          ).thenAnswer(
+            (realInvocation) async => box,
+          );
+
+          when(
+            box.get(kWordHivePropsKey),
+          ).thenAnswer(
+            (realInvocation) => null,
+          );
+
+          final data = await wordLocalDataSource.getData();
+          print(data);
+          expect(data, null);
+        },
+      );
+
+      
     },
   );
 }
