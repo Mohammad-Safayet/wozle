@@ -23,11 +23,11 @@ void main() async {
 
   group(
     "WordRemoteDatasource Test",
-    () async {
-      await dotenv.load(fileName: "env/dev.env");
+    () {
       late MockHttpDriver mockHttpDriver;
 
-      setUpAll(() {
+      setUpAll(() async {
+        await dotenv.load(fileName: "env/dev.env");
         mockHttpDriver = MockHttpDriver();
       });
 
