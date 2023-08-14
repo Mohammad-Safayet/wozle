@@ -9,7 +9,6 @@ import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/drivers/http/http_driver.dart';
 import 'package:wozle/src/core/drivers/local_storage/local_storage.dart';
 import 'package:wozle/src/core/drivers/local_storage/local_storage_impl.dart';
-import 'package:wozle/src/core/extensions/extensions.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/local/word_local_datasource.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/local/word_local_datasource_impl.dart';
@@ -171,8 +170,8 @@ void main() async {
       final MockLocalStorageImpl mockLocalStorage = MockLocalStorageImpl();
 
       final dailyWordEntity = MockDailyWordEntity();
-      final dailyWord = MockDailyWord();
-      final wordEntity = MockWordEntity();
+      // final dailyWord = MockDailyWord();
+      // final wordEntity = MockWordEntity();
 
       setUpAll(() async {
         await mockLocalStorage.initialize();
@@ -206,7 +205,36 @@ void main() async {
         },
       );
 
-      
+      test(
+        "return DailyWord object if data does exist in the database",
+        () async {
+          final box = MockBox<List>();
+
+          when(
+            mockLocalStorage.openBox<List>(any),
+          ).thenAnswer(
+            (realInvocation) async => box,
+          );
+
+          when(
+            box.get(any)?.cast<DailyWordEntity>(),
+          ).thenAnswer(
+            (realInvocation) => [dailyWordEntity],
+          );
+
+          // when(dailyWordEntity.time).thenReturn(DateTime.now());
+          // when(dailyWordEntity.word).thenReturn(wordEntity);
+          // when(wordEntity.word).thenReturn("");
+
+          // verify(dailyWordEntity.toModel());
+          // when(dailyWordEntity.toModel()).thenAnswer((_) => dailyWord);
+          // when(wordEntity.toModel()).thenReturn(word);
+          // when(meaningEntity.toModel()).thenReturn(meaning);
+          // when(definitionEntity.toModel()).thenReturn(definition);
+
+          expect(await wordLocalDataSource.getData(), isA<DailyWord>());
+        },
+      );
     },
   );
 }
