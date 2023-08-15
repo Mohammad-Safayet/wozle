@@ -51,6 +51,18 @@ void main() {
         },
       );
 
+      test(
+        "throws execption if there is problem in the Local Database",
+        () async {
+          final testException = Exception("Test exception");
+          when(localDataSource.getData()).thenThrow(testException);
+
+          expect(
+            () => wordRepository.getDailyWord(),
+            throwsException,
+          );
+        },
+      );
 
 
       tearDownAll(() {
