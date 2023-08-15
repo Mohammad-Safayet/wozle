@@ -8,7 +8,6 @@ import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/remote
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 import 'package:wozle/src/modules/wozle/infra/repositories/word_repo.dart';
 
-import '../infra/word_datasource_test.dart';
 import 'word_repo_test.mocks.dart';
 
 @GenerateMocks(
@@ -64,6 +63,19 @@ void main() {
         },
       );
 
+      test(
+        "return DailyWord object if data does exist in the database",
+        () async {
+          when(localDataSource.getData()).thenAnswer(
+            (realInvocation) async => MockDailyWord(),
+          );
+          
+          expect(
+            await wordRepository.getDailyWord(),
+            isA<DailyWord>(),
+          );
+        },
+      );
 
       tearDownAll(() {
         resetMockitoState();
