@@ -8,6 +8,7 @@ import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/remote
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 import 'package:wozle/src/modules/wozle/infra/repositories/word_repo.dart';
 
+import '../infra/word_datasource_test.dart';
 import 'word_repo_test.mocks.dart';
 
 @GenerateMocks(
@@ -33,6 +34,22 @@ void main() {
         );
       });
 
+      test(
+        "throws execption if there is problem in the internet connection",
+        () async {
+          when(localDataSource.getData()).thenAnswer(
+            (_) async => null,
+          );
+
+          final testException = Exception("Test exception");
+          when(remoteDataSource.getData()).thenThrow(testException);
+
+          expect(
+            () => wordRepository.getDailyWord(),
+            throwsException,
+          );
+        },
+      );
 
 
 
