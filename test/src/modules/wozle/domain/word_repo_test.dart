@@ -69,7 +69,39 @@ void main() {
           when(localDataSource.getData()).thenAnswer(
             (realInvocation) async => MockDailyWord(),
           );
-          
+
+          expect(
+            await wordRepository.getDailyWord(),
+            isA<DailyWord>(),
+          );
+        },
+      );
+
+      test(
+        "return DailyWord object fetching from the internet",
+        () async {
+          final dailyWord = MockDailyWord();
+
+          when(
+            localDataSource.getData(),
+          ).thenAnswer(
+            (realInvocation) async => null,
+          );
+
+          when(
+            remoteDataSource.getData(),
+          ).thenAnswer(
+            (realInvocation) async => dailyWord,
+          );
+
+          when(
+            localDataSource.saveData(
+              dailyWord,
+            ),
+          ).thenAnswer(
+            (realInvocation) async => null,
+          );
+
           expect(
             await wordRepository.getDailyWord(),
             isA<DailyWord>(),
