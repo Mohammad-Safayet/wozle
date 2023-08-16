@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -27,7 +29,7 @@ void main() {
     });
 
     test(
-      "returns ServerFailure on ServerException",
+      "return ServerFailure on ServerException",
       () async {
         when(getDailyWordUsecase.call()).thenThrow(
           ServerException(),
@@ -39,6 +41,42 @@ void main() {
           data,
           const Left(
             FailureEntity.serverFailure(),
+          ),
+        );
+      },
+    );
+    
+    test(
+      "return NoConnectionFailure on NoConnectionException",
+      () async {
+        when(getDailyWordUsecase.call()).thenThrow(
+          NoConnectionException(),
+        );
+
+        final data = await getDailyWordUsecase.call();
+        
+        expect(
+          data,
+          const Left(
+            FailureEntity.noConnectionFailure(),
+          ),
+        );
+      },
+    );
+    
+    test(
+      "return NoConnectionFailure on TimeoutException",
+      () async {
+        when(getDailyWordUsecase.call()).thenThrow(
+          TimeoutException(""),
+        );
+
+        final data = await getDailyWordUsecase.call();
+        
+        expect(
+          data,
+          const Left(
+            FailureEntity.noConnectionFailure(),
           ),
         );
       },
