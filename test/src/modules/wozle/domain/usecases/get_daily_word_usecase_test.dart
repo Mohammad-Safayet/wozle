@@ -37,13 +37,14 @@ void main() {
           ServerException(),
         );
 
-        final data = await getDailyWordUsecase.call();
+        final data = (await getDailyWordUsecase.call()).fold(
+          (l) => l,
+          (r) => r,
+        );
 
         expect(
           data,
-          const Left(
-            FailureEntity.serverFailure(),
-          ),
+          const FailureEntity.serverFailure(),
         );
       },
     );
@@ -55,13 +56,14 @@ void main() {
           NoConnectionException(),
         );
 
-        final data = await getDailyWordUsecase.call();
+        final data = (await getDailyWordUsecase.call()).fold(
+          (l) => l,
+          (r) => r,
+        );
 
         expect(
           data,
-          const Left(
-            FailureEntity.noConnectionFailure(),
-          ),
+          const FailureEntity.noConnectionFailure(),
         );
       },
     );
@@ -73,13 +75,33 @@ void main() {
           TimeoutException(""),
         );
 
-        final data = await getDailyWordUsecase.call();
+        final data = (await getDailyWordUsecase.call()).fold(
+          (l) => l,
+          (r) => r,
+        );
 
         expect(
           data,
-          const Left(
-            FailureEntity.noConnectionFailure(),
-          ),
+          const FailureEntity.noConnectionFailure(),
+        );
+      },
+    );
+
+    test(
+      "return DailyWord data on successful call",
+      () async {
+        when(mockWordRepository.getDailyWord()).thenAnswer(
+          (realInvocation) async => MockDailyWord(),
+        );
+
+        final data = (await getDailyWordUsecase.call()).fold(
+          (l) => null,
+          (r) => r,
+        );
+
+        expect(
+          data,
+          isA<DailyWord>(),
         );
       },
     );
