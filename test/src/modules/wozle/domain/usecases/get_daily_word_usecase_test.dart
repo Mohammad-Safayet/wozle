@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:wozle/src/core/utils/error_handling/error_handling.dart';
-import 'package:wozle/src/core/utils/error_handling/execptions.dart';
 import 'package:wozle/src/modules/wozle/domain/usecases/get_daily_word.dart';
 import 'package:wozle/src/modules/wozle/infra/models/daily_word.dart';
 import 'package:wozle/src/modules/wozle/infra/repositories/word_repo.dart';
