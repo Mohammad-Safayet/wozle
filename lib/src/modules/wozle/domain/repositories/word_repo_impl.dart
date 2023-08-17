@@ -12,15 +12,20 @@ class WordRepositoryImpl extends WordRepository {
     required this.remoteDataSource,
   });
 
-
   @override
   Future<DailyWord> getDailyWord() async {
-    DailyWord? word = await localDatasource.getData();
-    word ??= await remoteDataSource.getData();
+    try {
+      DailyWord? word = await localDatasource.getData();
 
-    await localDatasource.saveData(word);
+      if (word == null) {
+        word = await remoteDataSource.getData();
 
-    return word;
+        await localDatasource.saveData(word);
+      }
+
+      return word;
+    } catch (exception) {
+      rethrow;
+    }
   }
-  
 }

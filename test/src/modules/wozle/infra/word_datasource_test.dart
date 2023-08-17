@@ -4,11 +4,12 @@ import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:wozle/src/core/constants/app_strings.dart';
 
+import 'package:wozle/src/core/constants/app_strings.dart';
 import 'package:wozle/src/core/drivers/http/http_driver.dart';
 import 'package:wozle/src/core/drivers/local_storage/local_storage.dart';
 import 'package:wozle/src/core/drivers/local_storage/local_storage_impl.dart';
+import 'package:wozle/src/core/extensions/extensions.dart';
 import 'package:wozle/src/modules/wozle/domain/entities/entities.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/local/word_local_datasource.dart';
 import 'package:wozle/src/modules/wozle/infra/datasources/word_datasource/local/word_local_datasource_impl.dart';
@@ -18,6 +19,26 @@ import 'package:wozle/src/modules/wozle/infra/models/models.dart';
 
 import 'word_datasource_test.mocks.dart';
 
+class MockDailyWordEntity extends Mock implements DailyWordEntity {
+  DailyWord toModel() => noSuchMethod(
+        Invocation.method(
+          #toModel,
+          [],
+        ),
+      );
+}
+
+class MockDailyWord extends Mock implements DailyWord {}
+
+class MockDateTime extends Mock implements DateTime {
+  bool compareOnlyDate(DateTime other) => noSuchMethod(
+        Invocation.method(
+          #compareOnlyDate,
+          [],
+        ),
+      );
+}
+
 @GenerateMocks(
   [
     HttpDriver,
@@ -25,9 +46,6 @@ import 'word_datasource_test.mocks.dart';
     LocalStorage,
     LocalStorageImpl,
     Box,
-    DailyWord,
-    DailyWordEntity,
-    WordEntity,
   ],
 )
 void main() async {
@@ -169,10 +187,6 @@ void main() async {
       late final WordLocalDataSource wordLocalDataSource;
       final MockLocalStorageImpl mockLocalStorage = MockLocalStorageImpl();
 
-      final dailyWordEntity = MockDailyWordEntity();
-      // final dailyWord = MockDailyWord();
-      // final wordEntity = MockWordEntity();
-
       setUpAll(() async {
         await mockLocalStorage.initialize();
 
@@ -180,8 +194,6 @@ void main() async {
           localStorage: mockLocalStorage,
         );
       });
-
-      tearDownAll(() {});
 
       test(
         "return null if data does not exist in the database",
@@ -209,6 +221,8 @@ void main() async {
         "return DailyWord object if data does exist in the database",
         () async {
           final box = MockBox<List>();
+          final dailyWordEntity = MockDailyWordEntity();
+          final dailyWord = MockDailyWord();
 
           when(
             mockLocalStorage.openBox<List>(any),
@@ -217,24 +231,25 @@ void main() async {
           );
 
           when(
-            box.get(any)?.cast<DailyWordEntity>(),
+            box.get(any),
           ).thenAnswer(
-            (realInvocation) => [dailyWordEntity],
+            (realInvocation) => [
+              dailyWordEntity,
+            ],
           );
 
-          // when(dailyWordEntity.time).thenReturn(DateTime.now());
-          // when(dailyWordEntity.word).thenReturn(wordEntity);
-          // when(wordEntity.word).thenReturn("");
+          when(dailyWordEntity.toModel()).thenAnswer((_) => dailyWord);
 
-          // verify(dailyWordEntity.toModel());
-          // when(dailyWordEntity.toModel()).thenAnswer((_) => dailyWord);
-          // when(wordEntity.toModel()).thenReturn(word);
-          // when(meaningEntity.toModel()).thenReturn(meaning);
-          // when(definitionEntity.toModel()).thenReturn(definition);
+          when(MockDailyWord().dateTime.compareOnlyDate(DateTime.now()))
+              .thenReturn(true);
 
           expect(await wordLocalDataSource.getData(), isA<DailyWord>());
         },
       );
+
+      tearDownAll(() {
+        resetMockitoState();
+      });
     },
   );
 }

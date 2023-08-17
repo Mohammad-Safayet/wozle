@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:wozle/src/core/utils/error_handling/error_handling.dart';
 import 'package:wozle/src/modules/wozle/infra/models/models.dart';
@@ -18,6 +20,8 @@ class GetDailyWordUsecase {
     } on ServerException {
       return const Left(ServerFailure());
     } on NoConnectionException {
+      return const Left(NoConnectionFailure());
+    } on TimeoutException {
       return const Left(NoConnectionFailure());
     } catch (e) {
       return const Left(UnknownFailure());
